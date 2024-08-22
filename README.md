@@ -1,7 +1,3 @@
-# Developmental Stages
+# Assessment 1
+This is the file where you will have to provide a link to your project on the RMIT webserver
 
-Hey there, its Max! 
-
-This is a demo repository for university work that isn't related to work. This repo only showcases the ongoing studies in RMIT Web Programming classes.
-
-Or other work and projects, please check my other repos. 
