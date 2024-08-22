@@ -1,46 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+<import> 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+
+</import>
+
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Pets Victoria</title>
+    <title>Gallery - Pets Victoria</title>
     <meta name="author" content="Max Thum">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 
+
 <body>
-    <header>
-        <img src="images/logo.png" alt="Pets Victoria Logo" width="50" height="50">
-        <nav>
+    <div id="loader"></div>
+    <div class="header">
+        <div class="flex-container flex-start">
+            <li class="flex-item">
+                <img src="images/logo.png" alt="Pets Victoria Logo" width="50" height="50">
+            </li>
+            <li class="flex-item">
+             <div class="navigation">
+              <nav>
             <select name="header-navigation-menu" id="header-nav">
-            <option value="Home">Home</option>
+            <option value="null"> Home</option>
+            <br> 
+            <option value="Home"> Home</option>
             <option value="Pets">Pets</option>
-             <option value="Add A Pet">Add A Pet</option>
+            <option value="Add A Pet">Add A Pet</option>
             <option value="Gallery">Gallery</option>
+            <option value=""
+            </div> 
         </select>
         </nav>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="boilrice.html.html">Boil Rice</a></li>
-        </ul>
-    </nav>
-    <div class="container">
-    <h1> blank </h1>
-    <h2> Pets Victoria has lots to offer1 </h2>
-    <p> For almost two decades, Pets Victoria has helptedd in creating true social change  </p>
-    <p> This is a test paragraph and should be used for testing purposes only </p>
+    </li>
+    </div>
+    <li class="flex-item">
+    <div class="search-bar" align="right">
+        <input type="search" id="search" placeholder="Search...">
+        <span class="material-symbols-outlined">
+            search
+        </span>
+    </div>
+    </li> 
+    </div>
+</div> 
 
-    <h3> test  </h3>
-    <li> this is test 1 </li>
-    <h3> hi </h3>
-    <li> this is test 2 </li>
-</div>
+    <body> 
+        <div>
+            <h2> Pets Victoria has a lot to offer! </h2>
+            <p> For almost two decades, Pets Victoria has helped in creating true social change into the mainstream. Our work has helped make a difference to the Victorian Rescue Community and thousand of pets in need of rescue and rehabiliation. But until every pet is safe, respected and loved, we still have work to do. </p> 
 
-    
+            <div class="container">
+                <div class="block">
+             
+                  <img src="images/cat1.jpeg" height="200px" width="70%">
+                  <h3>Milo</h3>
+                </div>
+                <div class="block">
+                  
+                  <img src="images/dog2.jpeg" height="200px" width="70%">
+                  <h3>Baxter</h3>
+                </div>
+                <div class="block">
+                  <img src="images/dog4.jpeg" height="200px" width="70%">
+                  <h3>Luna</h3>
+                </div>
+                <div class="block">
+             
+                    <img src="images/cat1.jpeg" height="200px" width="70%">
+                    <h3>Milo</h3>
+                  </div>
+                  <div class="block">
+                    
+                    <img src="images/dog2.jpeg" height="200px" width="70%">
+                    <h3>Baxter</h3>
+                  </div>
+                  <div class="block">
+                    <img src="images/dog4.jpeg" height="200px" width="70%">
+                    <h3>Luna</h3>
+                  </div>
+              </div>
+              
+    </body>
+
+
+  <div class="footer">
+    <div align="center">
+            <p class="footer-text">Copyright S4014489 RMIT. All Rights Reserved | Designed for Pets Victoria</p>
+    </div> 
+  </div>
+
+
 </body>
 </html>

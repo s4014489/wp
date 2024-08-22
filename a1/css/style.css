@@ -37,12 +37,32 @@
     font-style: normal;
   }
 
+  .p {
+    font-family: "Ysabeau SC", sans-serif;
+  }
   .footer-text {
     font-family: "Ysabeau SC", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
   }
+
+  .poetsen-one-regular {
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }  
+
+  .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24; 
+    color: white; 
+  }
+
+
 
 /* css code to set up header grid*/
   .flex-container {
@@ -62,6 +82,22 @@
   .flex-start { 
     -webkit-align-items: flex-start;
     align-items: flex-start; 
+  }
+
+  /*container*/ 
+  .container{
+    display:flex;
+    flex-flow: row wrap;
+    justify-content:space-between;
+    align-items: center;
+    padding: 1em;
+  }
+  .block{ 
+    display: inline-block;
+    padding: 1em;
+    border: #008080;
+    border-radius: 30em;
+    
   }
   
   
