@@ -1,6 +1,5 @@
-# Readme.MD
-Hey there, its Max! 
+# Assessment 1
 
-This is a demo repository for university work that isn't related to work. This repo only showcases the ongoing studies in RMIT Web Programming classes.
+Please find the link to 
+https://titan.csit.rmit.edu.au/~s4014489/wp/a1/
 
-Or other work and projects, please check my other repos! 
