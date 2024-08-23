@@ -82,9 +82,6 @@
     color: white; 
   }
 
-  .p { 
-
-  }
 
   .required-field::after {
     content: "*";
@@ -95,7 +92,6 @@
 .grid-container2 {
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-template-row: auto auto;
   gap: 10px;
 
 
