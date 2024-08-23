@@ -1,5 +1,5 @@
 # Assessment 1
 
-Link Below for the Website Link to Titan: 
+Please find the link to 
 https://titan.csit.rmit.edu.au/~s4014489/wp/a1/
 

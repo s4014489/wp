@@ -1,7 +1,7 @@
 const dropdowns = document.querySelectorAll('.dropdown');
 
 function navigateToPage() { 
-    const url = this.getAttribute('href');
-    window.location.href = url;
-    
+    var dropdown = document.getElementById("dropdown");
+    var selectedOption = dropdown.options[dropdown.selectedIndex].value;
+    window.location.href = selectedOption;
 }
