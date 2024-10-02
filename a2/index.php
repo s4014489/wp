@@ -18,44 +18,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<?<php>
-includes/header.inc
-</php> 
+
+
 
 <body>
-    <div id="loader"></div>
-    <div class="header">
-        <div class="flex-container flex-start">
-            <li class="flex-item">
-                <img src="images/logo.png" alt="Pets Victoria Logo" width="50" height="50">
-            </li>
-            <li class="flex-item">
-             <div class="navigation">
-              <nav>
-                <select id="dropdown" onchange="navigateToPage()"> 
-                    <option value="no value is relevant">Select an Option</option>
-                   
-                    <option value="index.html">Home</option>
-                    <option value="pets.html">Pets</option>
-                    <option value="add.html">Add A Pet</option>
-                    <option value="gallery.html">Gallery</option>
-            </div> 
-        </select>
-        </nav>
-    </li>
-    </div>
-    <li class="flex-item">
-    <div class="search-bar" align="right">
-        <input type="search" id="search" placeholder="Search...">
-        <span class="material-symbols-outlined">
-            search
-        </span>
-    </div>
-    </li> 
-    </div>
-</div> 
 
-    <body> 
+
+<?php include './includes/header.inc'; ?>
+<?php include './includes/nav.inc'; ?>
         
         <div class="hero">
             <h1 class="heroheader1">Pets Victoria</h1>
@@ -66,15 +36,10 @@ includes/header.inc
 
         </div>
     </div>
-    </body>
+ 
 
-
-  <div class="footer">
-    <div align="center">
-            <p class="footer-text">Copyright S4014489 RMIT. All Rights Reserved | Designed for Pets Victoria</p>
-    </div>
-  </div>
-
+  <?php include './includes/footer.inc'; ?>
+<
   <script src="js/main.js"></script>
 </body>
 </html>
