@@ -1,6 +1,5 @@
-<footer>
-    <p>&copy; 2024 Pets Victoria. All rights reserved.</p>
-</footer>
-</div> <!-- End of wrapper -->
-</body>
-</html>
+  <div class="footer">
+    <div align="center">
+            <p class="footer-text">Copyright S4014489 RMIT. All Rights Reserved | Designed for Pets Victoria</p>
+    </div>
+  </div>
