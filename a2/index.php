@@ -25,21 +25,18 @@
 
 
 <?php include './includes/header.inc'; ?>
-<?php include './includes/nav.inc'; ?>
         
         <div class="hero">
             <h1 class="heroheader1">Pets Victoria</h1>
             <h2 class="htext"> Welcome to Pet Adoption </h2>
        
         <div class="hero-image" ">
-            <img src="images/main.jpeg" alt="Hero Image" width="30%"> 
-
+            <img src="images/main.jpeg" alt="Hero Image" width="30%">
         </div>
     </div>
  
 
-  <?php include './includes/footer.inc'; ?>
-<
-  <script src="js/main.js"></script>
 </body>
+  <?php include './includes/footer.inc'; ?>
+
 </html>

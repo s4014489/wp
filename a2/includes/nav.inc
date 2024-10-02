@@ -1,6 +1,9 @@
-<nav> 
-    <a href="index.php">Home</a>
-    <a href="pets.php">Pets</a>
-    <a href="gallery.php">Gallery</a>
-    <a href="add_more.php">Add More</a>
-</nav> 
+        <nav>
+          <select id="dropdown" onchange="navigateToPage()" style="width: 100%; text-align: center;">
+            <option value="" disabled selected>Select an Option</option>
+            <option value="index.php">Home</option>
+            <option value="pets.php">Pets</option>
+            <option value="add.php">Add A Pet</option>
+            <option value="gallery.php">Gallery</option>
+          </select>
+        </nav>

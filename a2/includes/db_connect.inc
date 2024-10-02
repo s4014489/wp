@@ -1,8 +1,8 @@
 <?php
   // Database connection settings
-  $servername = "localhost";
+  $servername = "alsprddb02.int.its.rmit.edu.au";
   $username = "s4014489"; // Replace with your username
-  $password = "your_password"; // Replace with your password
+  $password = "Q]y%~A&}.x8n9<u2"; // Replace with your password
   $dbname = "Jacob 5";
 
   // Create connection

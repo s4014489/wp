@@ -1,5 +1,5 @@
-<?php include('db_connect.inc'); ?>
-<?php include('header.inc'); ?>
+<?php include('includes/db_connect.inc'); ?>
+<?php include('includes/header.inc'); ?>
 <main>
   <table>
     <tr>
@@ -24,4 +24,4 @@
     ?>
   </table>
 </main>
-<?php include('footer.inc'); ?>
+<?php include('includes/footer.inc'); ?>

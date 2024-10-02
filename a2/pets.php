@@ -71,21 +71,13 @@
 
       // Close the connection
       mysqli_close($conn);
-    ?>
+      ?>
   </tbody>
+  </table>
+</div>
+</section>
 
-        </table>
-        </div>
-    </section>
-
-
-
-
-        
-
-
-  <script src="js/main.js"></script>
+<script src="js/main.js"></script>
 </body>
 <?php include './includes/footer.inc'; ?>
-
 </html>

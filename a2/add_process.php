@@ -1,4 +1,4 @@
-<?php include('db_connect.inc'); ?>
+<?php include('includes/db_connect.inc'); ?>
 <?php
   // Process form data and upload image to images folder
   // Insert data into pets table
