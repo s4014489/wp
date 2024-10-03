@@ -23,6 +23,7 @@
 
 <body>
 <?php include './includes/header.inc'; ?>
+<?php include './includes/db_connect'; ?>
 <div class="hero">
         <h2 class="htext" align="center"> Discover Pets Victoria </h2>
         <br> 
@@ -47,13 +48,7 @@
         </thread> 
         <tbody>
     <?php
-      // Connect to the database
-      $conn = mysqli_connect("localhost", "username", "password", "database");
 
-      // Check connection
-      if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-      }
 
       // Query the pets table
       $sql = "SELECT * FROM pets";
@@ -77,7 +72,6 @@
 </div>
 </section>
 
-<script src="js/main.js"></script>
 </body>
 <?php include './includes/footer.inc'; ?>
 </html>

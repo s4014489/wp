@@ -11,3 +11,4 @@
   header('Location: pets.php');
   exit;
 ?>
+\end{code}
