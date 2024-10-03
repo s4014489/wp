@@ -42,7 +42,7 @@
         <img src="images/pets.jpeg">
         </div>
         <div class="twin">
-        <table class="table"> 
+        <table class="tables"> 
             <thread> 
             <tr>
                 <th> Pet </th>
