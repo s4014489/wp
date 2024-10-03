@@ -56,7 +56,7 @@ if (mysqli_num_rows($result) > 0) {
 
       </div>
     </div>
-    <h2 class="card-title" align="centre" >Pet Name: <?php echo $row["petname"]; ?></h2>
+    <h2 class="card-title" align="centre" ><?php echo $row["petname"]; ?></h2>
     </div>
       </div>
 </div>
