@@ -22,37 +22,9 @@
 
 
 <body>
-    <div id="loader"></div>
-    <div class="header">
-        <div class="flex-container flex-start">
-            <li class="flex-item">
-                <img src="images/logo.png" alt="Pets Victoria Logo" width="50" height="50">
-            </li>
-            <li class="flex-item">
-                <div class="navigation">
-                 <nav>
-                   <select id="dropdown" onchange="navigateToPage()"> 
-                       <option value="no value is relevant">Select an Option</option>
-                      
-                       <option value="index.html">Home</option>
-                       <option value="pets.html">Pets</option>
-                       <option value="add.html">Add A Pet</option>
-                       <option value="gallery.html">Gallery</option>
-               </div> 
-           </select>
-           </nav>
-       </li>
-       </div>
-    <li class="flex-item">
-    <div class="search-bar" align="right">
-        <input type="search" id="search" placeholder="Search...">
-        <span class="material-symbols-outlined">
-            search
-        </span>
-    </div>
-    </li> 
-    </div>
-</div> 
+<?php include './includes/header.inc'; ?>
+<?php include './includes/db_connect.inc'; ?>
+
 
     <body class="body">
         <div>
@@ -60,97 +32,39 @@
             <p class="p"> For almost two decades, Pets Victoria has helped in creating true social change into the mainstream. Our work has helped make a difference to the Victorian Rescue Community and thousand of pets in need of rescue and rehabiliation. But until every pet is safe, respected and loved, we still have work to do. </p> 
 
  
-          </div>
-          <div class="grid-container2">
-            <div> 
-              <div class="image-container">
-              <img src="images/cat4.jpeg"
-              <div class="overlay-new"> 
-                <i class="material-icons">search</i>
-                <p class="p>" Discover More </p> 
-              
-              <div class="Namebox">
-                <h2 class="htext">Milo</h2>
-              </div>
-              </div>
-            </div>
-            <div class="image-container">
-              <img src="images/dog1.jpeg"
-              <div class="overlay-new"> 
-                <i class="material-icons">search</i>
-                <p class="p>" Discover More </p> 
-              
-              <div class="Namebox">
-                <h2 class="htext">Baxter</h2>
-              </div>
-              </div>
-            <div class="image-container">
-              <img src="images/cat2.jpeg"
-              <div class="overlay-new"> 
-                <i class="material-icons">search</i>
-                <p class="p>" Discover More </p> 
-              
-              <div class="Namebox">
-                <h2 class="htext imagecontainertext">Luna</h2>
-              </div>
-            </div>
-          </div>
-          <br> 
-          <br> 
-          <div class="grid-container2">
-            <div> 
-              <div class="image-container">
-              <img src="images/cat4.jpeg"
-              <div class="overlay-new"> 
-                <i class="material-icons">search</i>
-                <p class="p"> Discover More </p> 
-              
-              <div class="Namebox">
-                <h2 class="htext">Meet Our Pets</h2>
-              </div>
-              </div>
-            </div>
-            <div class="image-container">
-              <img src="images/cat4.jpeg"
-              <div class="overlay-new"> 
-                <i class="material-icons">search</i>
-                <p class="p"> Discover More </p> 
-              
-              <div class="Namebox">
-                <h2 class="htext">Meet Our Pets</h2>
-              </div>
-            </div>
-            <div class="image-container">
-              <img src="images/cat4.jpeg"
-              <div class="overlay-new"> 
-                <i class="material-icons">search</i>
-                <p class="p>" Discover More </p> 
-              
-              <div class="Namebox">
-                <h2 class="htext">Meet Our Pets</h2>
-              </div>
-            </div>
-          </div>
-          <br>   
-          <br> 
-    
-         
-        </div>
-      </div> 
+            <div class="container">
+                <? php> 
+                
+            // Query to select relevant fields from pets table
+    $sql = "SELECT name, image, description FROM pets";
+    $result = mysqli_query($conn, $sql);
+
+    // Display results in container
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo '<div class="card">';
+      echo '<img src="' . $row["image"] . '" alt="' . $row["name"] . '">';
+      echo '<div class="name">' . $row["name"] . '</div>';
+      echo '<div class="overlay">';
+      echo '<div>';
+      echo '<i class="fas fa-search search-icon"></i>';
+      echo '<p>DISCOVER MORE!</p>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+    }
+
+    // Close connection
+    mysqli_close($conn);
+  ?>
 
 
-          
 
 
-  <div class="footer">
-    <div align="center">
-            <p class="footer-text">Copyright S4014489 RMIT. All Rights Reserved | Designed for Pets Victoria</p>
-    </div> 
-  </div>
 
-  <script src="js/main.js"></script>
+
 
 </body>
+<?php include './includes/footer.inc'; ?>
 
 
 </html>

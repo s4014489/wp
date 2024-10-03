@@ -22,92 +22,44 @@
 
 
 <body>
-    <div id="loader"></div>
-    <div class="header">
-        <div class="flex-container flex-start">
-            <li class="flex-item">
-                <img src="images/logo.png" alt="Pets Victoria Logo" width="50" height="50">
-            </li>
-            <li class="flex-item">
-                <div class="navigation">
-                 <nav>
-                   <select id="dropdown" onchange="navigateToPage()"> 
-                       <option value="no value is relevant">Select an Option</option>
-                      
-                       <option value="index.html">Home</option>
-                       <option value="pets.html">Pets</option>
-                       <option value="add.html">Add A Pet</option>
-                       <option value="gallery.html">Gallery</option>
-               </div> 
-           </select>
-           </nav>
-       </li>
-       </div>
-    <li class="flex-item">
-    <div class="search-bar" align="right">
-        <input type="search" id="search" placeholder="Search...">
-        <span class="material-symbols-outlined">
-            search
-        </span>
-    </div>
-    </li> 
-    </div>
-</div> 
-
-    <body> 
-        <div class="hero">
-            <h2 class="htext"> Add a Pet</h2>
-            <br> 
-            <p class="p"> You can add a new pet here </p> 
-
-            <div class="p"> 
-            <form action="add_process.php" method="post" enctype="multipart/form-data">                <label for="pet-name">Pet Name:</label> <label class="required-field"></label>
-                <br> 
-                <input class="input" type="text" id="pet-name" name="pet-name" required>
-                <br>
-                <label for="pet-type">Pet Type: </label> <label class="required-field"></label>
-                <br> 
-                <input class="input" type="text" id="pet-type" name="pet-type" required>
-                <br>
-                <label class="input" for="Description">Description:</label> <label class="required-field"></label>
-                <br> 
-                <textarea class="input" id="Description" name="Description" required></textarea>
-                <br>
-                <label class="required-field">Select An Image: </label>
-                    <input type="file" id="image" name="image" required>
-                    <p> MAX IMAGE SIZE: 500PX</p>
-                    <br>
-                <label  for="Image Caption">Image Caption: </label>
-                <br> 
-                <textarea class="input" id="IMGCaption" name="Image Caption" required="yes"></textarea>
-                <br> 
-                <label for="Age">Age</label><label class="required-field"></label>
-                <br>
-                <input class="input"type="number" id="Age" name="Age" required>
-                <br>
-                <label for="Location">Location</label><label class="required-field"></label>
-                <br>
-                <input class="input"type="text" id="Location" name="Location" required>
-                </p>
-
-                  <input type="submit" value="Submit">
-                  <button> Clear Form </button> 
-
-</form> 
-
-                
-            </div>
-        </div>
-    </body>
+<?php include './includes/header.inc'; ?>
 
 
-  <div class="footer">
-    <div align="center">
-            <p class="footer-text">Copyright S4014489 RMIT. All Rights Reserved | Designed for Pets Victoria</p>
-    </div>
-  </div>
+<div class="hero">
+        <h2 class="htext">Add a Pet</h2>
+        <p class="p">You can add a new pet here</p>
 
-  <script src="js/main.js"></script>
+        <form action="add_process.php" method="post" enctype="multipart/form-data">
+        <label for="petname">Pet Name:</label>
+        <input type="text" id="petname" name="petname"><br><br>
+  
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br><br>
+  
+        <label for="imagecaption">Image Caption:</label>
+        <input type="text" id="ImageCaption" name="ImageCaption"><br><br>
+  
+        <label for="age">Age:</label>
+         <input type="number" id="Age" name="Age"><br><br>
+  
+         <label for="type">Type:</label>
+        <input type="text" id="type" name="type"><br><br>
+  
+        <label for=";ocation">Location:</label>
+         <input type="text" id="Location" name="Location"><br><br>
+  
+         <label for="image">Image:</label>
+         <input type="file" id="image" name="image"><br><br>
+  
+        <input type="submit" value="Add Pet">
+        <button type="reset">Clear Form</button>
+
+</form>
+
+
+    <?php include './includes/footer.inc'; ?>
+
+
 
 </body>
 

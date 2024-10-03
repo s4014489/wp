@@ -9,10 +9,11 @@
 
 </import>
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pets - Pets Victoria</title>
+    <title>Home - Pets Victoria</title>
     <meta name="author" content="Max Thum">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
@@ -20,19 +21,23 @@
 
 
 
-
 <body>
 <?php include './includes/header.inc'; ?>
-<?php include './includes/db_connect'; ?>
-<div class="hero">
+<?php include './includes/db_connect.inc'; ?>
+
+
+</div> 
+
+<body> 
+    <div class="hero">
         <h2 class="htext" align="center"> Discover Pets Victoria </h2>
         <br> 
         <p class="p">Pets Victoria is a dedicated pet adoption organsation based out in Victoria, Australia, focused on providing a safe and loving environment for pets in need. With a compassionate approach, Pet Victoria works tirelessly to rescue, rehabliliate and rehome dogs, cats and other animals. Their mission is to connect these deserving pets with caring individuals and families, creating lifelong bonds. The organsation offers a range of services, including adoption counseling, pet education and community support programs, all aimed at promoting responsible pet ownership and reducing the number of homeless animals.   </p>
         <p> </p>
         <p> </p>
         <p></p>
-</div> 
-<section class="twin grid">
+    </div> 
+    <section class="twin grid">
         <div class="twin" align='left'> 
         <img src="images/pets.jpeg">
         </div>
@@ -57,10 +62,10 @@
       // Loop through the results and display them in the table
       while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td>" . $row["pet_id"] . "</td>";
-        echo "<td>" . $row["pet_name"] . "</td>";
-        echo "<td>" . $row["pet_type"] . "</td>";
-        echo "<td>" . $row["owner"] . "</td>";
+        echo "<td>" . $row["petname"] . "</td>";
+        echo "<td>" . $row["type"] . "</td>";
+        echo "<td>" . $row["age"] . "</td>";
+        echo "<td>" . $row["location"] . "</td>";
         echo "</tr>";
       }
 
@@ -73,5 +78,18 @@
 </section>
 
 </body>
+
+<br> 
+
+<div class="footer">
+<div align="center">
+        <p class="footer-text">Copyright S4014489 RMIT. All Rights Reserved | Designed for Pets Victoria</p>
+</div>
+</div>
 <?php include './includes/footer.inc'; ?>
+
+<script src="js/main.js"></script>
+
+</body>
+</body>
 </html>
