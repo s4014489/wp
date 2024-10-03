@@ -45,6 +45,11 @@
   
          <label for="type">Type:</label> <label class="required-field"></label>
         <input type="text" id="type" name="type"><br><br>
+            <select name="type" id="type">
+  <option value="cat">Cat</option>
+  <option value="dog">Dog</option>
+  <option value="fish">Fish</option>
+</select>
   
         <label for=";ocation">Location:</label> <label class="required-field"></label>
          <input type="text" id="Location" name="Location"><br><br>
