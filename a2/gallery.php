@@ -49,7 +49,10 @@ if (mysqli_num_rows($result) > 0) {
            <div class="image-container">
                   <img src="<?php echo 'images/' . $row["image"]; ?>" class="card-img-top">
                   <div class="overlay">
-        <span class="search-icon">&#128526;</span><br>
+                  <input type="search" id="search" placeholder="Search..." style="width: 100%;">
+          <span class="material-symbols-outlined">
+            search
+          </span>
         <span class="discover-text">DISCOVER MORE!</span>
         <a href="details.php?petid=<?php echo $row['id']; ?>" class="btn btn-primary">View Details</a>
 
