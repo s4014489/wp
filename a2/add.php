@@ -29,6 +29,7 @@
         <h2 class="htext">Add a Pet</h2>
         <p class="p">You can add a new pet here</p>
 
+    <div class="forms"> 
         <form action="add_process.php" method="post" enctype="multipart/form-data">
         <label for="petname">Pet Name:</label> <label class="required-field"></label>
         <input type="text" id="petname" name="petname"><br><br>
@@ -59,7 +60,8 @@
 
 
 </form>
-
+    </div>
+</div>
 <br>
 <br>
 
