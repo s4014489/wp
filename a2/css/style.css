@@ -5,17 +5,19 @@
 .header {
     overflow: hidden;
     background-color: #008080 ;
-    padding: 20px 30px;
+    padding: 10px;
     text-align: center;
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
+    list-style-type: none;
   }
 
 .logo {
   width: 40px;
   height: 40px;
 }
+
 
 
 
@@ -40,8 +42,14 @@
 
   .hero-image {
     float: right; 
-
+      display: block;
+      margin: 0 auto 30px;
+      border-radius: 50%; 
+      max-width: 50%;
+      height: auto;
   }
+
+  
 
   /* CSS For Google Fonts intergration. 
   * This is the code for the Google Fonts intergration.
