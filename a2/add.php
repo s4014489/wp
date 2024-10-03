@@ -30,31 +30,39 @@
         <p class="p">You can add a new pet here</p>
 
         <form action="add_process.php" method="post" enctype="multipart/form-data">
-        <label for="petname">Pet Name:</label>
+        <label for="petname">Pet Name:</label> <label class="required-field"></label>
         <input type="text" id="petname" name="petname"><br><br>
   
-        <label for="description">Description:</label>
+        <label for="description">Description:</label> <label class="required-field"></label>
         <textarea id="description" name="description"></textarea><br><br>
   
-        <label for="imagecaption">Image Caption:</label>
+        <label for="imagecaption">Image Caption:</label> <label class="required-field"></label>
         <input type="text" id="ImageCaption" name="ImageCaption"><br><br>
   
-        <label for="age">Age:</label>
+        <label for="age">Age:</label> <label class="required-field"></label>
          <input type="number" id="Age" name="Age"><br><br>
   
-         <label for="type">Type:</label>
+         <label for="type">Type:</label> <label class="required-field"></label>
         <input type="text" id="type" name="type"><br><br>
   
-        <label for=";ocation">Location:</label>
+        <label for=";ocation">Location:</label> <label class="required-field"></label>
          <input type="text" id="Location" name="Location"><br><br>
   
-         <label for="image">Image:</label>
+         <label for="image">Image:</label> <label class="required-field"></label>
          <input type="file" id="image" name="image"><br><br>
+         <p> Allowed file types: .jpg, .png, .gif,  .jpeg, images must be under 5mb</p>
+
+
   
-        <input type="submit" value="Add Pet">
+        <input type="submit" value="Add Pet"> 
         <button type="reset">Clear Form</button>
 
+
 </form>
+
+<br>
+<br>
+
 
 
     <?php include './includes/footer.inc'; ?>

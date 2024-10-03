@@ -2,16 +2,16 @@
 require_once 'includes/db_connect.inc';
 
 // Retrieve data from form submission
-$petName = $_POST['petname'];
-$description = $_POST['description'];
-$caption = $_POST['imagecaption'] ?? '';
-$age = $_POST['age']?? ;
-$type = $_POST['type'];
-$location = $_POST['location'] ?? '';
-$imagePath = $_FILES['image']['name'];
+$petName = $_POST['petname'] ??'';
+$description = $_POST['description']??'';
+$caption = $_POST['imagecaption']??'';
+$age = $_POST['age']??'';
+$type = $_POST['type']??'';
+$location = $_POST['location']??'';
+$imagePath = $_FILES['image']['name']??'';
 
 // Define the target directory for image uploads
-$targetDir = 'images/';
+$targetDir = __DIR__ . '/images/';
 
 // Process image upload
 $imageFileName = basename($_FILES['image']['name']);

@@ -26,44 +26,63 @@
 <?php include './includes/db_connect.inc'; ?>
 
 
-    <body class="body">
         <div>
             <h2 class="htext">Pets Victoria has a lot to offer! </h2>
             <p class="p"> For almost two decades, Pets Victoria has helped in creating true social change into the mainstream. Our work has helped make a difference to the Victorian Rescue Community and thousand of pets in need of rescue and rehabiliation. But until every pet is safe, respected and loved, we still have work to do. </p> 
 
- 
-            <div class="container">
-                <? php> 
-                
-            // Query to select relevant fields from pets table
-    $sql = "SELECT name, image, description FROM pets";
-    $result = mysqli_query($conn, $sql);
+</div> 
+        <div class "container"> 
+        <?php
+$query = "SELECT * FROM pets";
+$result = mysqli_query($conn, $query);
 
-    // Display results in container
-    while ($row = mysqli_fetch_assoc($result)) {
-      echo '<div class="card">';
-      echo '<img src="' . $row["image"] . '" alt="' . $row["name"] . '">';
-      echo '<div class="name">' . $row["name"] . '</div>';
-      echo '<div class="overlay">';
-      echo '<div>';
-      echo '<i class="fas fa-search search-icon"></i>';
-      echo '<p>DISCOVER MORE!</p>';
-      echo '</div>';
-      echo '</div>';
-      echo '</div>';
-    }
-
-    // Close connection
-    mysqli_close($conn);
+if (mysqli_num_rows($result) > 0) {
   ?>
+      <div class="row">
+      <?php
+      $count = 0;
+      while ($row = mysqli_fetch_assoc($result)) {
+          $count++;
+      ?>
+           <div class="container">
+           <div class="card">
+           <div class="image-container">
+                  <img src="<?php echo 'images/' . $row["image"]; ?>" class="card-img-top">
+                  <div class="overlay">
+        <span class="search-icon">&#128526;</span><br>
+        <span class="discover-text">DISCOVER MORE!</span>
+        <a href="details.php?petid=<?php echo $row['id']; ?>" class="btn btn-primary">View Details</a>
 
 
-
-
-
-
-
+      </div>
+    </div>
+    <h2 class="card-title" align="centre" >Pet Name: <?php echo $row["petname"]; ?></h2>
+    </div>
+      </div>
+</div>
+                  
+                
+              </div>
+          </div>
+          <?php
+          if ($count % 3 == 0) {
+              echo '</div><div class="row">';
+          }
+      }
+      ?>
+      </div>
+  <?php
+  } else {
+      ?>
+      <p>No data available</p>
+  <?php
+  }
+  ?>
+<br>
+<br> 
 </body>
+<br>
+<br> 
 <?php include './includes/footer.inc'; ?>
 
 

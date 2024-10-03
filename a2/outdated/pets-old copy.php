@@ -22,9 +22,7 @@
 
 
 <body>
-<?php include './includes/header.inc'; ?>
-<?php include './includes/db_connect.inc'; ?>
-
+    <div id="loader"></div>
 
 </div> 
 
@@ -43,45 +41,62 @@
         </div>
         <div class="twin">
         <table class="table"> 
-            <thread> 
             <tr>
                 <th> Pet </th>
                 <th> Type </th>
                 <th> Age </th>
                 <th> Location</th>
             </tr>
-        </thread> 
-        <tbody>
-    <?php
+            <tr>
+                <td> Milo </td>
+                <td> Cat </td>
+                <td> 3 Months</td>
+                <td> Melbourne CBD</td> 
+            </tr>
+            <tr>
+                <td> Baxter </td>
+                <td> Dog </td>
+                <td> 5 Months</td>
+                <td> Cape Woolamai</td> 
+            </tr>
+            <tr>
+                <td> Luna </td>
+                <td> Cat </td>
+                <td> 1 Month</td>
+                <td> Ferntree Gully</td> 
+            </tr>
+            <tr>
+                <td> Willow </td>
+                <td> Dog </td>
+                <td> 48 Months</td>
+                <td> Marysville</td> 
+            </tr>
+            <tr>
+                <td> Oliver </td>
+                <td> Cat </td>
+                <td> 12 Months</td>
+                <td> Grampians</td> 
+            </tr>
+            <tr>
+                <td> Bella </td>
+                <td> Cat </td>
+                <td> 10 Months</td>
+                <td> Carlton</td> 
+            </tr>
+        </table>
+        </div>
+    </section>
 
-
-      // Query the pets table
-      $sql = "SELECT * FROM pets";
-      $result = mysqli_query($conn, $sql);
-
-      // Loop through the results and display them in the table
-      while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
-        echo "<td>" . $row["petname"] . "</td>";
-        echo "<td>" . $row["type"] . "</td>";
-        echo "<td>" . $row["age"] . "</td>";
-        echo "<td>" . $row["location"] . "</td>";
-        echo "</tr>";
-      }
-
-      // Close the connection
-      mysqli_close($conn);
-      ?>
-  </tbody>
-  </table>
-</div>
-</section>
 
 </body>
 
 <br> 
 
-<?php include './includes/footer.inc'; ?>
+<div class="footer">
+<div align="center">
+        <p class="footer-text">Copyright S4014489 RMIT. All Rights Reserved | Designed for Pets Victoria</p>
+</div>
+</div>
 
 <script src="js/main.js"></script>
 

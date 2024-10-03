@@ -41,7 +41,7 @@
     font-size: 72px;
   }
 
-  .headings {
+  .headings .h1 .h2 .h3 .h4 .h5 .card-title {
     font-family: "Ysabeau SC", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -89,52 +89,43 @@
 }
 
 /* Pet profile cards styling */
-.grid-container2 {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 10px;
-
-
+.pet-card {
+  width: 300px;
+  border: 1px solid #ccc;
+  margin: 10px;
 }
 
-.image-container {
-  position: relative;
+.pet-card img {
   width: 100%;
-  height: 100%; 
-  border: 1px solid;
-  border-radius: 10px;
+  height: 300px;
+  object-fit: cover;
 }
 
-.imagecontainertext { 
+.pet-card .overlay {
   position: absolute;
-}
-
-
-/* Hover effects */
-.overlay-new:hover { 
-  float: left;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   opacity: 0;
-  transition: 0.3s ease;
-  position: relative;
-  overflow: hidden;
-
+  transition: opacity 0.3s ease;
 }
 
-.overlay-text {
-  font-family: 'Ysabeau SC', sans-serif;
-  margin-bottom: 300px;
-  color: #36454F;
-  font-size: 18px;
-  font-weight: bold;
+.pet-card:hover .overlay {
+  opacity: 1;
+}
+
+.pet-card .overlay .text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  text-decoration: underline;
 }
+
 
 /* columns */
 .row {
@@ -180,7 +171,7 @@
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 20%;
+    width: 300;
   }
   
   /* On mouse-over, add a deeper shadow */
@@ -195,49 +186,9 @@
   }
 
   
-  /*
-  .block{ 
+
+
  
-    display: inline-block;
-    border: #008080;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 10px;
-    image-resolution: 600px 400px;
-  }
- /* .blockimg:hover {
-    background-color: #2020204e;
-  }
-    */
-
-  .image-container{ 
-    width: 475px;
-    display: block;
-    cursor: pointer;
-    overflow: hidden;
-
-  }
-
-  .image-container img { 
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-
-  .overlay{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.501);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-
-  }
-  */
 
   /* tables */ 
 
@@ -330,5 +281,52 @@
  }
 
   
+ .card {
+  width: 250px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+  transform: scale(1.1);
+  color: #fff;
+  opacity: 50%;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0%;
+  transition: opacity 0.3s ease;
+}
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.overlay .search-icon {
+  font-size: 24px;
+  color: #000000;
+}
+
+.overlay .discover-text {
+  font-size: 16px;
+  color: #000000;
+  text-decoration: underline;
+}
   
  

@@ -1,27 +1,46 @@
 <?php include('includes/db_connect.inc'); ?>
 <?php include('includes/header.inc'); ?>
-<main>
-  <table>
-    <tr>
-      <th>Pet Name</th>
-      <th>Age</th>
-      <th>Type</th>
-      <th>Location</th>
-    </tr>
-    <?php
-      $query = "SELECT petid, petname, age, type, location FROM pets";
-      $result = $conn->query($query);
-      while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td><a href='details.php?id={$row['petid']}'>{$row['petname']}</a></td>";
-        echo "<td><i class='material-icons'>{$row['age']}</i></td>";
-        echo "<td><i class='material-icons'>{$row['type']}</i></td>";
-        echo "<td><i class='material-icons'>{$row['location']}</i></td>";
-        echo "</tr>";
-      }
-      $result->free();
-      $conn->close();
-    ?>
-  </table>
-</main>
+
+
+
+<?php
+if (isset($_GET['petid'])) {
+  $petid = filter_var($_GET['petid'], FILTER_VALIDATE_INT);
+  if ($petid === false) {
+    echo "Invalid pet ID";
+    exit;
+  }
+  $query = "SELECT * FROM pets WHERE id = '$petid'";
+  $result = mysqli_query($conn, $query);
+  if (mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+  } else {
+    echo "Pet not found";
+    exit;
+  }
+} else {
+  echo "Pet ID not provided";
+  exit;
+}
+?>
+
+  <img src="<?php echo 'images/' . $row["image"]; ?>" class="img-fluid">
+<BR> 
+<BR> 
+  <h1>Pet Details</h1>
+<p>Pet Name: <?php echo $row["petname"]; ?></p>
+<p>Description: <?php echo $row["description"]; ?></p>
+<p>Age: <?php echo $row["age"]; ?></p>
+<p>Type: <?php echo $row["type"]; ?></p>
+<p>Location: <?php echo $row["location"]; ?></p>
+
+  <!-- Add more details as needed -->
+  <?php
+} else {
+  echo "No pet found with ID $pet_id";
+}
+
+// Close MySQL connection
+mysqli_close($conn);
+?>
 <?php include('includes/footer.inc'); ?>
