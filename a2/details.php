@@ -44,3 +44,4 @@ if (isset($_GET['petid'])) {
 mysqli_close($conn);
 ?>
 <?php include('includes/footer.inc'); ?>
+?> 
