@@ -30,8 +30,8 @@
             <h1 class="heroheader1">Pets Victoria</h1>
             <h2 class="htext"> Welcome to Pet Adoption </h2>
        
-        <div class="hero-image" ">
-            <img src="images/main.jpeg" alt="Hero Image" width="30%">
+        <div class="hero-image">
+            <img src="images/main.jpg" class="hero-image" alt="Hero Image" >
         </div>
     </div>
  
