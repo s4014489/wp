@@ -10,6 +10,9 @@ if (isset($_GET['petid'])) {
     echo "Invalid pet ID";
     exit;
   }
+
+echo "Pet ID: $petid<br>";
+
   $query = "SELECT * FROM pets WHERE id = '$petid'";
   $result = mysqli_query($conn, $query);
   if (mysqli_num_rows($result) > 0) {
@@ -33,6 +36,7 @@ if (isset($_GET['petid'])) {
 <p>Age: <?php echo $row["age"]; ?></p>
 <p>Type: <?php echo $row["type"]; ?></p>
 <p>Location: <?php echo $row["location"]; ?></p>
+
 
 // Close MySQL connection
 mysqli_close($conn);
