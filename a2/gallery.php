@@ -49,7 +49,6 @@ if (mysqli_num_rows($result) > 0) {
            <div class="image-container">
                   <img src="<?php echo 'images/' . $row["image"]; ?>" class="card-img-top">
                   <div class="overlay">
-                  <input type="search" id="search" placeholder="Search..." style="width: 100%;">
           <span class="material-symbols-outlined">
             search
           </span>
