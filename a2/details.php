@@ -34,12 +34,6 @@ if (isset($_GET['petid'])) {
 <p>Type: <?php echo $row["type"]; ?></p>
 <p>Location: <?php echo $row["location"]; ?></p>
 
-  <!-- Add more details as needed -->
-  <?php
-} else {
-  echo "No pet found with ID $pet_id";
-}
-
 // Close MySQL connection
 mysqli_close($conn);
 ?>
