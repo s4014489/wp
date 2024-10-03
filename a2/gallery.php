@@ -54,10 +54,13 @@ if (mysqli_num_rows($result) > 0) {
           </span>
         <span class="discover-text">DISCOVER MORE!</span>
         <?php
-        $petid = $_GET['petid'];
-        $query2 = "SELECT * FROM pets WHERE id = '$row[id]'";
-       ?> 
-        <a href="details.php?petid=<?php echo $row['id']; ?>" class="btn btn-primary">View Details</a>
+if (isset($_GET['petid'])) {
+    $petid = $_GET['petid'];
+    // ...
+}
+
+?>
+        <a href="details.php?petid=<?php echo $row['petid']; ?>" class="btn btn-primary">View Details</a>
 
 
       </div>
