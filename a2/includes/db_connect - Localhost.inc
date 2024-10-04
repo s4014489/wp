@@ -1,9 +1,9 @@
 <?php
   // Database connection settings
-  $servername = "talsprddb02.int.its.rmit.edu.au";
-  $username = "s4014489"; // Replace with your username
-  $password = "Q]y%~A&}.x8n9<u2"; // Replace with your password
-  $dbname = "s4014489";
+  $servername = "localhost";
+  $username = "root"; // Replace with your username
+  $password = ""; // Replace with your password
+  $dbname = "petsvictoria";
 
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
