@@ -32,7 +32,7 @@ if (isset($_GET['petid'])) {
 
 echo "Pet ID: $petid<br>";
 
-  $query = "SELECT * FROM pets WHERE id = '$petid'";
+  $query = "SELECT * FROM pets WHERE petid = '$petid'";
   $result = mysqli_query($conn, $query);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
