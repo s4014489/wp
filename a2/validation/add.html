@@ -29,17 +29,10 @@
         <h2 class="htext">Add a Pet</h2>
         <p class="p">You can add a new pet here</p>
 
-    <div class="form"> 
+    <div class="forms"> 
         <form action="add_process.php" method="post" enctype="multipart/form-data">
         <label for="petname">Pet Name:</label> <label class="required-field"></label>
         <input type="text" id="petname" name="petname"><br><br>
-
-        <label for="type">Type:</label> <label class="required-field"></label>
-            <select name="type" id="type">
-  <option value="cat">Cat</option>
-  <option value="dog">Dog</option>
-  <option value="fish">Fish</option>
-</select>
   
         <label for="description">Description:</label> <label class="required-field"></label>
         <textarea id="description" name="description"></textarea><br><br>
@@ -47,10 +40,15 @@
         <label for="imagecaption">Image Caption:</label> <label class="required-field"></label>
         <input type="text" id="ImageCaption" name="ImageCaption"><br><br>
   
-        <label for="age">Age in Months:</label> <label class="required-field"></label>
+        <label for="age">Age:</label> <label class="required-field"></label>
          <input type="number" id="Age" name="Age"><br><br>
   
- 
+         <label for="type">Type:</label> <label class="required-field"></label>
+            <select name="type" id="type">
+  <option value="cat">Cat</option>
+  <option value="dog">Dog</option>
+  <option value="fish">Fish</option>
+</select>
   
         <label for=";ocation">Location:</label> <label class="required-field"></label>
          <input type="text" id="Location" name="Location"><br><br>
