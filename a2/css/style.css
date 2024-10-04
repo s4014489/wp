@@ -69,7 +69,7 @@
     font-style: normal;
   }
 
-  .p p {
+  .text p {
     font-family: "Ysabeau SC", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -90,16 +90,18 @@
   }  
   
 
-  .poetsen-one-regular {
-    font-family: "Poetsen One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }  
-
   .htext{ 
     font-family: "Poetsen One", sans-serif;
     font-weight: 400;
     font-style: normal;
+  }
+
+  
+  .htext-table{ 
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #008080;
   }
   .material-symbols-outlined {
     font-variation-settings:

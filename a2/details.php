@@ -49,17 +49,16 @@ echo "Pet ID: $petid<br>";
   <img src="<?php echo 'images/' . $row["image"]; ?>" class="img-fluid">
 <BR> 
 <BR> 
-  <h1>Pet Details</h1>
-      <li>
-      <p>Age: <?php echo $row["age"]; ?></p>
-      </li>
-    <li>
-      <p>Type: <?php echo $row["type"]; ?></p>
-        </li>
-    <li>
-      <p>Location: <?php echo $row["location"]; ?></p>
-    </li>
-  </ul>
+  <div class=flex-item"> 
+  <div> 
+  <p class="htext-table">Age: <?php echo $row["age"]; ?></p>
+</div> 
+<div> 
+<p class="htext-table">Type: <?php echo $row["type"]; ?></p>
+</div> 
+<div> 
+<p class="htext-table"> Location: <?php echo $row["location"]; ?></p>
+</div> 
 
 
 <h3>Pet Name: <?php echo $row["petname"]; ?></h3p>
@@ -68,4 +67,3 @@ echo "Pet ID: $petid<br>";
 
 
 <?php include('includes/footer.inc'); ?>
-?> 

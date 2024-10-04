@@ -45,10 +45,10 @@
         <table class="tables"> 
             <thread> 
             <tr>
-                <th> Pet </th>
-                <th> Type </th>
-                <th> Age </th>
-                <th> Location</th>
+                <th class="htext-table"> Pet </th>
+                <th class="htext-table">  Type </th>
+                <th class="htext-table">  Age </th>
+                <th class="htext-table">  Location</th>
             </tr>
         </thread> 
         <tbody>
