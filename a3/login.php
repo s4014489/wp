@@ -22,45 +22,49 @@
 <body padding ="30">
     <?php include './includes/header.inc'; ?>
     <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Start the session only if it has not been started
-}
+// Start the session
+session_start();
 
-// Initialize variables for error messages
-$error = '';
+// Include your database connection file
+include './includes/db_connect.inc';
 
-// Handle form submission
+// Initialize variables
+$username = '';
+$password = '';
+$errorMessage = '';
+
+// Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include './includes/db_connect.inc'; // Include your database connection file
-
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Prepare the SQL statement to prevent SQL injection
-    $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
+    // Prepare a SQL statement to prevent SQL injection
+    $stmt = $conn->prepare("SELECT user_id FROM users WHERE username = ? AND password = ?");
+    $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
     $stmt->store_result();
 
-    // Check if the user exists
-    if ($stmt->num_rows == 1) {
-        $stmt->bind_result($hashed_password);
+    // Check if a user was found
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($userId);
         $stmt->fetch();
 
-        // Verify the password against the hashed password
-        if (password_verify($password, $hashed_password)) {
-            $_SESSION['username'] = $username; // Set session variable
-            header('Location: user.php'); // Redirect to a user page
-            exit();
-        } else {
-            $error = "Invalid username or password.";
-        }
+        // Set user_id in the session
+        $_SESSION['user_id'] = $userId;
+
+        // Redirect to user page or dashboard after successful login
+        header("Location: user.php");
+        exit(); // Always exit after a redirect
     } else {
-        $error = "Invalid username or password.";
+        $errorMessage = "Invalid credentials. Please try again.";
     }
 
-    $stmt->close(); // Close the statement
+    // Close the statement
+    $stmt->close();
 }
+
+// Close the database connection
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -69,38 +73,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
-    <div class="row justify-content-center" style="margin-top: 100px;">
-        <div class="col-md-6">
-            <h2 class="text-center">Login</h2>
-            <?php if ($error): ?>
-                <div class="alert alert-danger"><?php echo $error; ?></div>
-            <?php endif; ?>
-            <form method="POST" action="login.php">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
-            </form>
-            <p class="text-center mt-3">Don't have an account? <a href="register.php">Register here</a></p>
-        </div>
-    </div>
-</div>
+    <h1>Login</h1>
+    
+    <?php if (!empty($errorMessage)): ?>
+        <p style="color: red;"><?php echo htmlspecialchars($errorMessage); ?></p>
+    <?php endif; ?>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
-
- 
-    <?php include './includes/footer.inc'; ?>
+    <form method="POST" action="">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($username); ?>" required>
+        <br>
+        
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+        <br>
+        
+        <input type="submit" value="Login">
+    </form>
 </body>
-
 </html>
