@@ -47,3 +47,4 @@ $isLoggedIn = isset($_SESSION['username']);
     </div>
   </div>
 </nav>
+
