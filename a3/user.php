@@ -34,13 +34,8 @@
 
 <div class="container"> 
 <?php
-session_start();
 include './includes/db_connect.inc'; // Make sure to include your database connection
 
-// Start the session only if it hasn't been started yet
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
 // Check if user is logged in
 if (isset($_SESSION['user_id'])) {

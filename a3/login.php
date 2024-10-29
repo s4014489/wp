@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<import> 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Permanent+Marker&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-<link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
-
-</import>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Pets Victoria</title>
-    <meta name="author" content="Max Thum">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-
-<body padding ="30">
-    <?php include './includes/header.inc'; ?>
-    <?php
-// Start the session
-session_start();
+<?php
+// Start the session only if it hasn't been started yet
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Include your database connection file
 include './includes/db_connect.inc';
@@ -39,22 +18,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // Prepare a SQL statement to prevent SQL injection
-    $stmt = $conn->prepare("SELECT user_id FROM users WHERE username = ? AND password = ?");
-    $stmt->bind_param("ss", $username, $password);
+    $stmt = $conn->prepare("SELECT user_id, password FROM users WHERE username = ?");
+
+    // Check if the prepare() method failed
+    if ($stmt === false) {
+        die("Database prepare error: " . htmlspecialchars($conn->error));
+    }
+
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
 
     // Check if a user was found
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($userId);
+        $stmt->bind_result($userId, $hashedPassword);
         $stmt->fetch();
 
-        // Set user_id in the session
-        $_SESSION['user_id'] = $userId;
+        // Verify the password
+        if (password_verify($password, $hashedPassword)) {
+            // Set user_id in the session
+            $_SESSION['user_id'] = $userId;
 
-        // Redirect to user page or dashboard after successful login
-        header("Location: user.php");
-        exit(); // Always exit after a redirect
+            // Redirect to user page or dashboard after successful login
+            header("Location: user.php");
+            exit(); // Always exit after a redirect
+        } else {
+            $errorMessage = "Invalid credentials. Please try again.";
+        }
     } else {
         $errorMessage = "Invalid credentials. Please try again.";
     }
@@ -73,8 +63,11 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Link to your CSS file -->
 </head>
 <body>
+<?php include './includes/header.inc'; ?>
+
     <h1>Login</h1>
     
     <?php if (!empty($errorMessage)): ?>
@@ -91,6 +84,11 @@ $conn->close();
         <br>
         
         <input type="submit" value="Login">
+
+        <p class="text-center mt-3">Don't have an account? <a href="register.php">Register here</a></p>
+
     </form>
+    <?php include './includes/footer.inc'; ?>
+
 </body>
 </html>
