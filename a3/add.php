@@ -24,10 +24,16 @@
 <body>
 <?php include './includes/header.inc'; ?>
 
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col">
+    <h2 class="htext" >Add a Pet</h2>
+    <p class="p">You can add a new pet here</p>    
+</div>
+</div> 
 
-<div class="hero">
-        <h2 class="htext" >Add a Pet</h2>
-        <p class="p">You can add a new pet here</p>
+
+       
 
     <div class="form" style="form"> 
         <form action="add_process.php" method="post" enctype="multipart/form-data">
@@ -42,7 +48,7 @@
 </select>
   
         <label for="description">Description:</label> <label class="required-field"></label>
-        <textarea id="description" name="description"></textarea><br><br>
+        <label id="description" name="description"></textarea><br><br>
   
         <label for="imagecaption">Image Caption:</label> <label class="required-field"></label>
         <input type="text" id="ImageCaption" name="ImageCaption"><br><br>

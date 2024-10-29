@@ -52,7 +52,6 @@ if (mysqli_num_rows($result) > 0) {
                 <img src="<?php echo 'images/' . htmlspecialchars($row["image"]); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row["petname"]); ?>">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo htmlspecialchars($row["petname"]); ?></h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href="details.php?petid=<?php echo $row['petid']; ?>" class="btn btn-primary">View Details</a>
                     <?php if (isset($_SESSION['username'])) { // Check if user is logged in ?>
                         <a href="edit_pet.php?petid=<?php echo $row['petid']; ?>" class="btn btn-secondary">Edit</a>
