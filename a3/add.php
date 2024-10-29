@@ -36,40 +36,19 @@
        
 
     <div class="form" style="form"> 
-        <form action="add_process.php" method="post" enctype="multipart/form-data">
-        <label for="petname">Pet Name:</label> <label class="required-field"></label>
-        <input type="text" id="petname" name="petname"><br><br>
-
-        <label for="type">Type:</label> <label class="required-field"></label>
-            <select name="type" id="type">
-  <option value="cat">Cat</option>
-  <option value="dog">Dog</option>
-  <option value="fish">Fish</option>
-</select>
-  
-        <label for="description">Description:</label> <label class="required-field"></label>
-        <label id="description" name="description"></textarea><br><br>
-  
-        <label for="imagecaption">Image Caption:</label> <label class="required-field"></label>
-        <input type="text" id="ImageCaption" name="ImageCaption"><br><br>
-  
-        <label for="age">Age in Months:</label> <label class="required-field"></label>
-         <input type="number" id="Age" name="Age"><br><br>
-  
- 
-  
-        <label for="location">Location:</label> <label class="required-field"></label>
-         <input type="text" id="Location" name="Location"><br><br>
-  
-         <label for="image">Image:</label> <label class="required-field"></label>
-         <input type="file" id="image" name="image"><br><br>
-         <p> Allowed file types: .jpg, .png, .gif,  .jpeg, images must be under 5mb</p>
-
-
-  
+    <form method="POST" action="add_process.php" enctype="multipart/form-data">
+    <input type="text" name="petname" placeholder="Pet Name" required>
+    <textarea name="description" placeholder="Description" required></textarea>
+    <input type="text" name="imagecaption" placeholder="Image Caption" required>
+    <input type="text" name="age" placeholder="Age" required>
+    <input type="text" name="type" placeholder="Type" required>
+    <input type="text" name="location" placeholder="Location" required>
+    <input type="file" name="image" required>
         <input type="submit" value="Add Pet"> 
         <button type="reset">Clear Form</button>
 
+
+</form>
 
 </form>
     </div>
