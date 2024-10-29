@@ -34,7 +34,6 @@
 
 <div class="container"> 
 <?php
-session_start();
 include './includes/db_connect.inc'; // Make sure to include your database connection
 
 // Check if user is logged in
@@ -62,7 +61,7 @@ if (isset($_SESSION['user_id'])) {
                     <div class="card" style="width: 18rem; margin: 10px;">
                         <img src="<?php echo 'images/' . htmlspecialchars($row["image"]); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row["name"]); ?>">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($row["name"]); ?></h5>
+                            <h5 class="card-title"><?php echo ($row["name"]); ?></h5>
                             <a href="details.php?petid=<?php echo $row['petid']; ?>" class="btn btn-primary">View Details</a>
                             <a href="edit_pet.php?petid=<?php echo $row['petid']; ?>" class="btn btn-secondary">Edit</a>
                             <a href="delete_pet.php?petid=<?php echo $row['petid']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this pet?');">Delete</a>
