@@ -1,19 +1,9 @@
 <?php
-require_once 'includes/db_connect.inc';
-
-// Retrieve data from form submission
-$petName = $_POST['petname'] ??'';
-$description = $_POST['description']??'';
-$caption = $_POST['imagecaption']??'';
-$age = $_POST['age']??'';
-$type = $_POST['type']??'';
-$location = $_POST['location']??'';
-$imagePath = $_FILES['image']['name']??'';
-
-// Process image upload
-<?php
 // Start the session if needed
 session_start();
+
+// Include database connection file if necessary
+require_once 'includes/db_connect.inc'; // Uncomment if you need to connect to a database
 
 // Define the target directory for image uploads
 $target_dir = "/home/sh9/S4014489/public_html/wp/a3/images/";
