@@ -36,7 +36,7 @@ if (isset($_SESSION['user_id'])) {
     $password = "your_password";
     $dbname = "your_dbname";
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $db_username, $db_password, $dbname);
 
     // Check connection
     if ($conn->connect_error) {
