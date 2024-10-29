@@ -22,7 +22,9 @@
 <body padding ="30">
     <?php include './includes/header.inc'; ?>
     <?php
-session_start(); // Start the session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); // Start the session only if it has not been started
+}
 
 // Initialize variables for error messages
 $error = '';
@@ -32,20 +34,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include './includes/db_connect.inc'; // Include your database connection file
 
     $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $password = $_POST['password'];
 
-    // Query to check credentials
-    $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = mysqli_query($conn, $query);
+    // Prepare the SQL statement to prevent SQL injection
+    $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
 
-    // Check if user exists
-    if (mysqli_num_rows($result) == 1) {
-        $_SESSION['username'] = $username; // Set session variable
-        header('Location: user.php'); // Redirect to a user page
-        exit();
+    // Check if the user exists
+    if ($stmt->num_rows == 1) {
+        $stmt->bind_result($hashed_password);
+        $stmt->fetch();
+
+        // Verify the password against the hashed password
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION['username'] = $username; // Set session variable
+            header('Location: user.php'); // Redirect to a user page
+            exit();
+        } else {
+            $error = "Invalid username or password.";
+        }
     } else {
         $error = "Invalid username or password.";
     }
+
+    $stmt->close(); // Close the statement
 }
 ?>
 
