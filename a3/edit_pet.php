@@ -2,24 +2,40 @@
 include './includes/db_connect.inc'; // Database connection
 include './includes/header.inc';
 
-
-// Check if the pet ID is set in the URL
-if (isset($_GET['petid'])) {
-    $petid = $_GET['petid'];
-
-    // Fetch the current details of the pet
+// Function to fetch pet details
+function getPetDetails($conn, $petid) {
     $sql = "SELECT * FROM pets WHERE petid = ?";
     $stmt = $conn->prepare($sql);
 
-    // Check if the prepare was successful
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
 
     $stmt->bind_param("i", $petid);
     $stmt->execute();
-    $result = $stmt->get_result();
-    $pet = $result->fetch_assoc();
+    return $stmt->get_result()->fetch_assoc();
+}
+
+// Function to handle image upload
+function handleImageUpload($file) {
+    if (isset($file) && $file['error'] == UPLOAD_ERR_OK) {
+        $uploadDir = 'images/'; // Directory to save uploaded images
+        $imagePath = $uploadDir . basename($file['name']);
+        
+        // Move the uploaded file to the target directory
+        if (move_uploaded_file($file['tmp_name'], $imagePath)) {
+            return $imagePath;
+        } else {
+            return ''; // Return empty string if upload fails
+        }
+    }
+    return '';
+}
+
+// Check if the pet ID is set in the URL
+if (isset($_GET['petid'])) {
+    $petid = (int)$_GET['petid']; // Cast to integer for safety
+    $pet = getPetDetails($conn, $petid);
 
     // Check if pet exists
     if (!$pet) {
@@ -33,80 +49,56 @@ if (isset($_GET['petid'])) {
 
 // Update pet details if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-     // Get the pet ID from the form
-     $pet_id = $_POST['pet_id'];
-     $petname = $_POST['petname'];
-     $type = $_POST['type'];
-     $age = $_POST['age'];
-     $location = $_POST['location'];
-     $description = $_POST['description'];
- 
-     // Handle image upload
-     $imagePath = '';
-     if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-         $uploadDir = 'images/'; // Directory to save uploaded images
-         $imagePath = $uploadDir . basename($_FILES['image']['name']);
-         move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
-     }
- 
-     // Prepare the SQL query
-     $sql = "UPDATE pets SET petname = ?, type = ?, age = ?, location = ?, description = ?, image = ? WHERE id = ?";
-     $stmt = $conn->prepare($sql);
-     $stmt->bind_param("ssssssi", $petname, $type, $age, $location, $description, $imagePath, $pet_id);
- 
-     // Execute the query
-     if ($stmt->execute()) {
-         echo "Pet updated successfully.";
-     } else {
-         echo "Error updating pet: " . $stmt->error;
-     }
+    // Get the pet ID and other details from the form
+    $pet_id = (int)$_POST['pet_id'];
+    $petname = $_POST['petname'];
+    $type = $_POST['type'];
+    $age = (int)$_POST['age'];
+    $location = $_POST['location'];
+    $description = $_POST['description'];
 
-?>
+    // Handle image upload
+    $imagePath = handleImageUpload($_FILES['image']);
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Pet - Pets Victoria</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <h2>Edit Pet Details</h2>
- <form action="update_pet.php" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="pet_id" value="<?php echo $pet_id; ?>"> <!-- Hidden field for the pet ID -->
-    <label for="petname">Pet Name:</label>
-    <input type="text" name="petname" required>
+    // Prepare the SQL statement to update pet details
+    $updateSql = "UPDATE pets SET petname = ?, type = ?, age = ?, location = ?, description = ?, image = ? WHERE petid = ?";
+    $updateStmt = $conn->prepare($updateSql);
 
-    <label for="type">Type:</label>
-    <input type="text" name="type" required>
+    if (!$updateStmt) {
+        die("Prepare failed: " . $conn->error);
+    }
 
-    <label for="age">Age:</label>
-    <input type="text" name="age" required>
-
-    <label for="location">Location:</label>
-    <input type="text" name="location" required>
-
-    <label for="description">Description:</label>
-    <textarea name="description" required></textarea>
-
-    <label for="image">Image:</label>
-    <input type="file" name="image" accept="image/*">
-
-    <input type="submit" value="Update Pet">
-</form>
-    <a href="view_pet.php?petid=<?php echo $petid; ?>">Cancel</a>
+    // Bind parameters and execute the update
+    $updateStmt->bind_param("ssisssi", $petname, $type, $age, $location, $description, $imagePath, $pet_id);
     
-<?php 
-    include './includes/footer.inc';
-; ?>
-
-</body>
-</html>
-
-<?php
-
-// Close the database connection
-$conn->close();
+    if ($updateStmt->execute()) {
+        echo "Pet details updated successfully!";
+    } else {
+        echo "Error updating pet details: " . $updateStmt->error;
+    }
 }
 ?>
+
+<!-- HTML form for editing pet details -->
+<form method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="pet_id" value="<?php echo htmlspecialchars($pet['petid']); ?>">
+    <label for="petname">Pet Name:</label>
+    <input type="text" name="petname" value="<?php echo htmlspecialchars($pet['petname']); ?>" required>
+    
+    <label for="type">Type:</label>
+    <input type="text" name="type" value="<?php echo htmlspecialchars($pet['type']); ?>" required>
+    
+    <label for="age">Age:</label>
+    <input type="number" name="age" value="<?php echo htmlspecialchars($pet['age']); ?>" required>
+    
+    <label for="location">Location:</label>
+    <input type="text" name="location" value="<?php echo htmlspecialchars($pet['location']); ?>" required>
+    
+    <label for="description">Description:</label>
+    <textarea name="description" required><?php echo htmlspecialchars($pet['description']); ?></textarea>
+    
+    <label for="image">Image:</label>
+    <input type="file" name="image">
+    
+    <input type="submit" value="Update Pet">
+</form>
