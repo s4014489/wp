@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $stmt->bind_param("s", $username);
-    $stmt->bind_result($userId, $hashedPassword);
     $stmt->execute();
     $stmt->store_result();
 
