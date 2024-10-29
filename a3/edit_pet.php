@@ -6,30 +6,9 @@ include './includes/header.inc';
 function getPetDetails($conn, $petid) {
     $sql = "SELECT * FROM pets WHERE petid = ?";
     $stmt = $conn->prepare($sql);
-
-    if (!$stmt) {
-        die("Prepare failed: " . $conn->error);
-    }
-
     $stmt->bind_param("i", $petid);
     $stmt->execute();
     return $stmt->get_result()->fetch_assoc();
-}
-
-// Function to handle image upload
-function handleImageUpload($file) {
-    if (isset($file) && $file['error'] == UPLOAD_ERR_OK) {
-        $uploadDir = 'images/'; // Directory to save uploaded images
-        $imagePath = $uploadDir . basename($file['name']);
-        
-        // Move the uploaded file to the target directory
-        if (move_uploaded_file($file['tmp_name'], $imagePath)) {
-            return $imagePath;
-        } else {
-            return ''; // Return empty string if upload fails
-        }
-    }
-    return '';
 }
 
 // Check if the pet ID is set in the URL
@@ -57,11 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $location = $_POST['location'];
     $description = $_POST['description'];
 
-    // Handle image upload
-    $imagePath = handleImageUpload($_FILES['image']);
-
-    // Prepare the SQL statement to update pet details
-    $updateSql = "UPDATE pets SET petname = ?, type = ?, age = ?, location = ?, description = ?, image = ? WHERE petid = ?";
+    // Prepare the SQL statement to update pet details without changing the image
+    $updateSql = "UPDATE pets SET petname = ?, type = ?, age = ?, location = ?, description = ? WHERE petid = ?";
     $updateStmt = $conn->prepare($updateSql);
 
     if (!$updateStmt) {
@@ -69,16 +45,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Bind parameters and execute the update
-    $updateStmt->bind_param("ssisssi", $petname, $type, $age, $location, $description, $imagePath, $pet_id);
+    $updateStmt->bind_param("ssissi", $petname, $type, $age, $location, $description, $pet_id);
     
     if ($updateStmt->execute()) {
         echo "Pet details updated successfully!";
     } else {
         echo "Error updating pet details: " . $updateStmt->error;
     }
+
+    // Check if an image file was uploaded
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+        // Handle image upload
+        $imagePath = handleImageUpload($_FILES['image']);
+        
+        // If an image was uploaded, update the image path in the database
+        if ($imagePath) {
+            $updateImageSql = "UPDATE pets SET image = ? WHERE petid = ?";
+            $updateImageStmt = $conn->prepare($updateImageSql);
+            $updateImageStmt->bind_param("si", $imagePath, $pet_id);
+            $updateImageStmt->execute();
+        }
+    }
+}
+
+// Function to handle image upload
+function handleImageUpload($file) {
+    if (isset($file) && $file['error'] == UPLOAD_ERR_OK) {
+        $uploadDir = 'images/'; // Directory to save uploaded images
+        $imagePath = $uploadDir . basename($file['name']);
+        
+        // Move the uploaded file to the target directory
+        if (move_uploaded_file($file['tmp_name'], $imagePath)) {
+            return $imagePath;
+        } else {
+            return ''; // Return empty string if upload fails
+        }
+    }
+    return '';
 }
 ?>
-
 <!-- HTML form for editing pet details -->
 <form method="POST" enctype="multipart/form-data">
     <input type="hidden" name="pet_id" value="<?php echo htmlspecialchars($pet['petid']); ?>">

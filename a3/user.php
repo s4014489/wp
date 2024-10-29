@@ -34,39 +34,59 @@
 
 <div class="container"> 
 <?php
-// Assuming you have already established the database connection in your script
-$query = "SELECT * FROM pets";
-$result = mysqli_query($conn, $query);
+session_start();
+include './includes/db_connect.inc'; // Make sure to include your database connection
 
-// Check if the query was successful
-if (!$result) {
-    die("Query failed: " . mysqli_error($conn));
-}
+// Check if user is logged in
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
 
-if (mysqli_num_rows($result) > 0) {
-    echo '<div class="row">'; // Start a new row for Bootstrap grid
-    while ($row = mysqli_fetch_assoc($result)) {
-        ?>
-        <div class="col-md-4"> <!-- Adjust column size as needed -->
-            <div class="card" style="width: 18rem; margin: 10px;">
-                <img src="<?php echo 'images/' . htmlspecialchars($row["image"]); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row["petname"]); ?>">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo htmlspecialchars($row["petname"]); ?></h5>
-                    <a href="details.php?petid=<?php echo $row['petid']; ?>" class="btn btn-primary">View Details</a>
-                    <?php if (isset($_SESSION['username'])) { // Check if user is logged in ?>
-                        <a href="edit_pet.php?petid=<?php echo $row['petid']; ?>" class="btn btn-secondary">Edit</a>
-                        <a href="delete_pet.php?petid=<?php echo $row['petid']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this pet?');">Delete</a>
-                    <?php } ?>
+    // Prepare the SQL query to fetch pets for the logged-in user
+    $query = "SELECT * FROM pets WHERE user_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $userId); // 'i' for integer type
+
+    // Execute the query
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+
+        // Check if any pets are found
+        if ($result->num_rows > 0) {
+            echo '<div class="container">';
+            echo '<h2>Your Pets</h2>';
+            echo '<div class="row">'; // Start a new row for Bootstrap grid
+
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <div class="col-md-4"> <!-- Adjust column size as needed -->
+                    <div class="card" style="width: 18rem; margin: 10px;">
+                        <img src="<?php echo 'images/' . htmlspecialchars($row["image"]); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row["name"]); ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo htmlspecialchars($row["name"]); ?></h5>
+                            <a href="details.php?petid=<?php echo $row['petid']; ?>" class="btn btn-primary">View Details</a>
+                            <a href="edit_pet.php?petid=<?php echo $row['petid']; ?>" class="btn btn-secondary">Edit</a>
+                            <a href="delete_pet.php?petid=<?php echo $row['petid']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this pet?');">Delete</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <?php
+                <?php
+            }
+
+            echo '</div>'; // Close the row
+            echo '</div>'; // Close the container
+        } else {
+            echo '<p>You have no pets.</p>'; // Message when no pets are available
+        }
+    } else {
+        echo "Error fetching pets: " . $stmt->error;
     }
-    echo '</div>'; // Close the last row
+
+    $stmt->close();
+    $conn->close();
 } else {
-    echo '<p>No pets found.</p>'; // Message when no pets are available
+    echo "You must be logged in to view your pets.";
 }
-?> 
+?>
 </div> 
 
 <?php include './includes/footer.inc'; ?>
