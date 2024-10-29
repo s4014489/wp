@@ -32,8 +32,8 @@ if (isset($_SESSION['user_id'])) {
 
     // Database connection (assuming you have a connection setup)
     $servername = "your_servername";
-    $username = "your_username";
-    $password = "your_password";
+    $db_username = "your_username";
+    $db_password = "your_password";
     $dbname = "your_dbname";
 
     $conn = new mysqli($servername, $db_username, $db_password, $dbname);
