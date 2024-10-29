@@ -31,67 +31,38 @@
             <p class="p"> For almost two decades, Pets Victoria has helped in creating true social change into the mainstream. Our work has helped make a difference to the Victorian Rescue Community and thousand of pets in need of rescue and rehabiliation. But until every pet is safe, respected and loved, we still have work to do. </p> 
 
 </div> 
-        <div class "container"> 
-        <?php
+
+<div class="container"> 
+<?php
 $query = "SELECT * FROM pets";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {
-  ?>
-      <div class="row">
-      <?php
-      $count = 0;
-      while ($row = mysqli_fetch_assoc($result)) {
-          $count++;
-      ?>
-           <div class="container">
-           <div class="card">
-           <div class="image-container">
-                  <img src="<?php echo 'images/' . $row["image"]; ?>" class="card-img-top">
-                  <div class="overlay">
-          <span class="material-symbols-outlined">
-            search
-          </span>
-        <?php
-if (isset($_GET['petid'])) {
-    $petid = $_GET['petid'];
-    // ...
-}
-
-?>
-        <a href="details.php?petid=<?php echo $row['petid']; ?>" class="btn btn-primary">Discover More!</a>
-
-
+  echo '<div class="row">'; // Start a new row for Bootstrap grid
+  while ($row = mysqli_fetch_assoc($result)) {
+    ?>
+    <div class="col-md-4"> <!-- Adjust column size as needed -->
+      <div class="card" style="width: 18rem;">
+        <img src="<?php echo 'images/' . $row["image"]; ?>" class="card-img-top" alt="<?php echo $row["petname"]; ?>">
+        <div class="card-body">
+          <h5 class="card-title"><?php echo $row["petname"]; ?></h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="details.php?petid=<?php echo $row['petid']; ?>" class="btn btn-primary">View Details</a>
+        </div>
       </div>
     </div>
-    <h2 class="card-title" align="centre" ><?php echo $row["petname"]; ?></h2>
-    </div>
-      </div>
-</div>
-                  
-                
-              </div>
-          </div>
-          <?php
-          if ($count % 3 == 0) {
-              echo '</div><div class="row">';
-          }
-      }
-      ?>
-      </div>
-  <?php
-  } else {
-      ?>
-      <p>No data available</p>
-  <?php
+    <?php
+
   }
-  ?>
-<br>
-<br> 
-</body>
-<br>
-<br> 
+  echo '</div>'; // Close the last row
+
+} 
+?> 
+
 <?php include './includes/footer.inc'; ?>
 
+<script src="js/main.js"></script>
 
+</body>
+</body>
 </html>

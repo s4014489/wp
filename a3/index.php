@@ -19,24 +19,56 @@
 </head>
 
 
+<body padding ="30">
+    <?php include './includes/header.inc'; ?>
 
+    <section class="hero" padding-top ="30">
 
-<body>
-
-
-<?php include './includes/header.inc'; ?>
-        
-        <div class="hero">
-            <h1 class="heroheader1">Pets Victoria</h1>
-            <h2 class="htext"> Welcome to Pet Adoption </h2>
-       
-        <div class="hero-image">
-            <img src="images/main.jpg" class="hero-image" alt="Hero Image" >
-        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="display-4">Welcome to Pets Victoria</h1>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+                    <button class="btn btn-primary">Learn More</button>
+                </div>
+                <div class="col-md-6">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./images/cat1.jpeg" class="d-block w-100" alt="...">
     </div>
- 
+    <div class="carousel-item">
+      <img src="./images/cat1.jpeg" class="d-block w-100" alt="...">
+    </div>
+    /*<div class="carousel-item">
+      <img src.="/images/cat1.jpeg" class="d-block w-100" alt="...">
+    </div>*/
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+            </div>
+            </div>
+        </div>
+    </section>
+    <p> PETS VICTORIA IS A DEDICATED PET ADOPTION ORGANIZATION BASED IN VICTORIA, AUSTRALIA, FOCUSED ON PROVIDING A SAFE AND LOVING ENVIRONMENT FOR PETS IN NEED. WITH A COMPASSIONATE APPROACH, PETS VICTORIA WORKS TIRELESSLY TO RESCUE, REHABILITATE, AND REHOME DOGS, CATS, AND OTHER ANIMALS. THEIR MISSION IS TO CONNECT THESE DESERVING PETS WITH CARING INDIVIDUALS AND FAMILIES, CREATING LIFELONG BONDS. THE ORGANIZATION OFFERS A RANGE OF SERVICES, INCLUDING ADOPTION COUNSELING, PET EDUCATION, AND COMMUNITY SUPPORT PROGRAMS, ALL AIMED AT PROMOTING RESPONSIBLE PET OWNERSHIP AND REDUCING THE NUMBER OF HOMELESS ANIMALS. </p> 
 
+    
+    </div>
+
+ 
+    <?php include './includes/footer.inc'; ?>
 </body>
-  <?php include './includes/footer.inc'; ?>
 
 </html>
