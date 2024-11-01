@@ -23,7 +23,7 @@
     <?php include './includes/header.inc'; ?>
     <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Start the session only if it has not been started
+    session_start(); 
 }
 
 // Initialize variables for error messages
@@ -72,6 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<br> 
+<br>
 <div class="container">
     <div class="row justify-content-center" style="margin-top: 100px;">
         <div class="col-md-6">
