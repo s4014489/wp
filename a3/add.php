@@ -18,7 +18,8 @@
 <?php 
 include './includes/header.inc'; 
 ?>
-
+<br>
+<br> 
 <div class="container">
     <div class="row align-items-start">
         <div class="col">
