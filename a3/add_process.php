@@ -50,7 +50,7 @@ if ($conn->connect_error) {
 }
 
 // Prepare and bind
-$stmt = $conn->prepare("INSERT INTO pets (user_id, petName, description, image, caption, age, location, type) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO pets (user_id, petName, description, image, caption, age, location, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 if ($stmt === false) {
     die("Prepare failed: " . $conn->error);
 }
