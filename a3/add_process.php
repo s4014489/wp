@@ -1,5 +1,6 @@
 <?php
  include './includes/db_connect.inc'; 
+ include './includes/header.inc'
 
 
 // Check if user is logged in
@@ -46,6 +47,7 @@ if (isset($_SESSION['user_id'])) {
     // Execute the query
     if ($stmt->execute()) {
         echo "Pet added successfully!";
+        
     } else {
         echo "Error adding pet: " . $stmt->error;
     }
@@ -56,5 +58,7 @@ if (isset($_SESSION['user_id'])) {
 } else {
     echo "You must be logged in to add a pet.";
 }
+
+include './includes/footer.inc'
 
 ?>
