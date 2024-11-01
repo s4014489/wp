@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Pets Victoria</title>
+    <title>User - Pets Victoria</title>
     <meta name="author" content="Max Thum">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
@@ -27,8 +27,7 @@
 
 
         <div class="container">
-            <h2 class="htext">Pets Victoria has a lot to offer! </h2>
-            <p class="p"> For almost two decades, Pets Victoria has helped in creating true social change into the mainstream. Our work has helped make a difference to the Victorian Rescue Community and thousand of pets in need of rescue and rehabiliation. But until every pet is safe, respected and loved, we still have work to do. </p> 
+            <h2 class="htext">User</h2>
 
 </div> 
 
@@ -36,7 +35,6 @@
 <br>
 <div class="container"> 
 <?php
-session_start(); // Start the session
 
 // Check if user_id is stored in session
 if (isset($_SESSION['user_id'])) {
