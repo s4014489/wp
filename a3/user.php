@@ -42,11 +42,13 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start(); 
 }
 
-$_SESSION['user_id'] = $user_id; // 
 
 
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id']; // Get the user_id from the session
+
+// Retrieve user data from the database
+$_SESSION['user_id'] = $user_id; // 
 
     // Fetch pets for the specific user_id
     $sql = "SELECT * FROM pets WHERE user_id = ?";
