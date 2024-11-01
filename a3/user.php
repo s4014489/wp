@@ -71,8 +71,6 @@ if (isset($_GET['user_id'])) {
     }
 
     $stmt->close();
-} else {
-    echo '<p>Error: user_id is not specified.</p>';
 }
 
 $conn->close();
