@@ -1,6 +1,5 @@
 <!-- Navbar -->
 <?php
-session_start(); // Start the session
 
 $isLoggedIn = isset($_SESSION['username']); 
 ?>
@@ -42,9 +41,18 @@ $isLoggedIn = isset($_SESSION['username']);
             <a class="nav-link" href="login.php">Login</a>
           </li>
         <?php endif; ?>
+        <!-- Search Box -->
+
 
       </ul>
     </div>
+    <div> 
+    <li class="nav-item" align ="right">
+  <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
+        <input type="text" name="search" value="<?php echo htmlspecialchars($searchQuery); ?>" placeholder="Search...">
+  </form>
+</li>
+</div>
   </div>
 </nav>
 
