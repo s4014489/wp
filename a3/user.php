@@ -56,6 +56,9 @@ if (isset($_GET['user_id'])) {
             echo '<p>Age: ' . htmlspecialchars($pet['age']) . ' years</p>';
             echo '<img src="' . htmlspecialchars($pet['image_url']) . '" alt="' . htmlspecialchars($pet['name']) . '">';
             
+            // Display user_id (optional)
+            echo '<p>User ID: ' . htmlspecialchars($pet['user_id']) . '</p>'; // Display user_id if needed
+            
             // Edit and Delete buttons
             echo '<div class="button-container">';
             echo '<a href="edit_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="edit-button">Edit</a>';
