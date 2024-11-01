@@ -44,19 +44,24 @@ include './includes/header.inc';
     } else {
         // Show the form for adding a pet
         ?>
-        <form method="post" action="">
-            <label for="petname">Pet Name:</label>
-            <input type="text" name="petname" required>
-            <label for="description">Description:</label>
-            <textarea name="description" required></textarea>
-            <label for="age">Age:</label>
-            <input type="text" name="age" required>
-            <label for="type">Type:</label>
-            <input type="text" name="type" required>
-            <label for="location">Location:</label>
-            <input type="text" name="location" required>
-            <input type="submit" value="Add Pet">
-        </form>
+<div class="form" style="form"> 
+    <form method="POST" action="add_process.php" enctype="multipart/form-data">
+    <p> Enter the pet's name:</p>
+    <input type="text" name="petname" placeholder="Pet Name" required>
+    <p> Enter the pet's description </p> 
+    <textarea name="description" placeholder="Description" required></textarea>
+    <p>  Enter the pet's age:</p>
+    <input type="text" name="imagecaption" placeholder="Image Caption" required>
+    <p>  Enter the pet's age:</p>
+    <input type="text" name="age" placeholder="Age" required>
+    <p>  Enter the pet's type:</p>
+    <input type="text" name="type" placeholder="Type" required>
+    <p>  Enter the pet's location:</p>
+    <input type="text" name="location" placeholder="Location" required>
+    <p>  Enter the pet's image:</p>
+    <input type="file" name="image" required>
+        <input type="submit" value="Add Pet"> 
+        <button type="reset">Clear Form</button>
         <?php
     }
     ?>
