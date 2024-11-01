@@ -95,7 +95,7 @@ if (isset($_SESSION['user_id'])) {
 } else {
     echo '<p>Error: User is not logged in.</p>'; // Handle case where user is not logged in
 }
-
+?>
 </div> 
 
 <?php include './includes/footer.inc'; ?>
