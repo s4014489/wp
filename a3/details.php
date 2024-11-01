@@ -43,7 +43,8 @@ if (isset($_GET['petid'])) {
   }
 }
 ?>
-
+<br>
+<br>
 <div class="container">
   <div class="row align-items-start">
     <div class="col">

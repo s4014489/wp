@@ -1,15 +1,15 @@
 <?php
 session_start(); // Start the session
 
-// Remove the check for user login
-// You can still keep the session variable for other purposes if needed
-
 // Retrieve form data
 $petName = $_POST['petname'] ?? '';
 $description = $_POST['description'] ?? '';
 $age = $_POST['age'] ?? '';
 $type = $_POST['type'] ?? '';
 $location = $_POST['location'] ?? '';
+
+// Initialize userId
+$userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0; // Use the logged-in user's ID or 0 if not logged in
 
 // Handle file upload
 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -48,9 +48,8 @@ if ($stmt === false) {
     die("Prepare failed: " . $conn->error);
 }
 
-// Set a default user_id or handle accordingly since we no longer check if the user is logged in
-$defaultUser Id = 0; // Use a default user ID or handle accordingly
-$stmt->bind_param("issssss", $defaultUser Id, $petName, $description, $age, $type, $location, $image);
+// Use the userId variable to bind the parameter
+$stmt->bind_param("issssss", $userId, $petName, $description, $age, $type, $location, $image);
 
 // Execute the query
 if ($stmt->execute()) {
