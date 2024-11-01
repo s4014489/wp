@@ -36,37 +36,42 @@
 <br>
 <div class="container"> 
 <?php
-// Assuming user_id is passed as a GET parameter
-$user_id = $_GET['user_id'];
+// Check if user_id is set in the GET request
+if (isset($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
 
-// Fetch pets for the specific user_id
-$sql = "SELECT * FROM pets WHERE user_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
+    // Fetch pets for the specific user_id
+    $sql = "SELECT * FROM pets WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    while($pet = $result->fetch_assoc()) {
-        // Display each pet in a card format
-        echo '<div class="card">';
-        echo '<h3>' . htmlspecialchars($pet['name']) . '</h3>';
-        echo '<p>Type: ' . htmlspecialchars($pet['type']) . '</p>';
-        echo '<p>Age: ' . htmlspecialchars($pet['age']) . ' years</p>';
-        echo '<img src="' . htmlspecialchars($pet['image_url']) . '" alt="' . htmlspecialchars($pet['name']) . '">';
-        
-        // Edit and Delete buttons
-        echo '<div class="button-container">';
-        echo '<a href="edit_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="edit-button">Edit</a>';
-        echo '<a href="delete_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
-        echo '</div>'; // Close button-container
-        echo '</div>'; // Close card
+    if ($result->num_rows > 0) {
+        while($pet = $result->fetch_assoc()) {
+            // Display each pet in a card format
+            echo '<div class="card">';
+            echo '<h3>' . htmlspecialchars($pet['name']) . '</h3>';
+            echo '<p>Type: ' . htmlspecialchars($pet['type']) . '</p>';
+            echo '<p>Age: ' . htmlspecialchars($pet['age']) . ' years</p>';
+            echo '<img src="' . htmlspecialchars($pet['image_url']) . '" alt="' . htmlspecialchars($pet['name']) . '">';
+            
+            // Edit and Delete buttons
+            echo '<div class="button-container">';
+            echo '<a href="edit_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="edit-button">Edit</a>';
+            echo '<a href="delete_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
+            echo '</div>'; // Close button-container
+            echo '</div>'; // Close card
+        }
+    } else {
+        echo '<p>No pets found for this user.</p>';
     }
+
+    $stmt->close();
 } else {
-    echo '<p>No pets found for this user.</p>';
+    echo '<p>Error: user_id is not specified.</p>';
 }
 
-$stmt->close();
 $conn->close();
 ?>
 
