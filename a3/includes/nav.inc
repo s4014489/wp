@@ -2,6 +2,7 @@
 <?php
 
 $isLoggedIn = isset($_SESSION['username']); 
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search query from the URL
 ?>
 
 
