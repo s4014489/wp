@@ -29,16 +29,6 @@ include './includes/header.inc';
 
     <?php
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Start the session only if it hasn't been started
-}
-
-// Check if the user is logged in
-    if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isLoggedIn'] !== true) {
-        echo "You must be logged in to add a pet.";
-        exit; // Stop further execution
-    }
-
     // Process the form submission
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve and sanitize form data
