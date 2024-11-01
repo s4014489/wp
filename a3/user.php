@@ -26,12 +26,14 @@
 <?php include './includes/db_connect.inc'; ?>
 
 
-        <div>
+        <div class="container">
             <h2 class="htext">Pets Victoria has a lot to offer! </h2>
             <p class="p"> For almost two decades, Pets Victoria has helped in creating true social change into the mainstream. Our work has helped make a difference to the Victorian Rescue Community and thousand of pets in need of rescue and rehabiliation. But until every pet is safe, respected and loved, we still have work to do. </p> 
 
 </div> 
 
+<br>
+<br>
 <div class="container"> 
 <?php
 // Check if the form has been submitted
