@@ -12,6 +12,8 @@ $description = $_POST['description'] ?? '';
 $age = $_POST['age'] ?? '';
 $type = $_POST['type'] ?? '';
 $location = $_POST['location'] ?? '';
+$caption = $_POST['caption'] ?? '';
+
 
 // Initialize userId
 $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0; // Use the logged-in user's ID or 0 if not logged in
@@ -48,13 +50,13 @@ if ($conn->connect_error) {
 }
 
 // Prepare and bind
-$stmt = $conn->prepare("INSERT INTO pets (user_id, petName, description, age, type, location, image, caption) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO pets (user_id, petName, description, image, caption, age, location, type) VALUES (?, ?, ?, ?, ?, ?, ?)");
 if ($stmt === false) {
     die("Prepare failed: " . $conn->error);
 }
 
 // Use the userId variable to bind the parameter
-$stmt->bind_param("issssss", $userId, $petName, $description, $age, $type, $location, $image);
+$stmt->bind_param("issssss", $userId, $petName, $description, $caption, $age, $type, $location, $image);
 
 // Execute the query
 if ($stmt->execute()) {
