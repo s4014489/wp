@@ -56,7 +56,7 @@ if ($stmt === false) {
 }
 
 // Use the userId variable to bind the parameter
-$stmt->bind_param("issssss", $userId, $petName, $description, $caption, $age, $type, $location, $image);
+$stmt->bind_param("isssssss", $userId, $petName, $description, $image, $caption, $age, $location, $type);
 
 // Execute the query
 if ($stmt->execute()) {
