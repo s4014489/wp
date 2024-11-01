@@ -17,6 +17,8 @@
 <body>
 <?php 
 include './includes/header.inc'; 
+include './includes/db_connect.inc'; 
+
 ?>
 <br>
 <br> 

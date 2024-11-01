@@ -1,5 +1,10 @@
 <?php
+
+
 session_start(); // Start the session
+
+include './includes/db_connect.inc'; 
+
 
 // Retrieve form data
 $petName = $_POST['petname'] ?? '';
