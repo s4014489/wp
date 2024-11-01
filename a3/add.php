@@ -16,7 +16,6 @@
 
 <body>
 <?php 
-session_start(); // Start the session
 include './includes/header.inc'; 
 ?>
 

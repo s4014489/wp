@@ -22,6 +22,8 @@
 <body padding ="30">
     <?php include './includes/header.inc'; ?>
 
+    <br>
+    <br>
     <section class="hero" padding-top ="30">
 
         <div class="container">
@@ -63,22 +65,41 @@
         </div>
     </section>
 
+  <br> 
+  <br>
+
     <div class="container">
   <div class="row">
-    <div class="col">col</div>
-    <div class="col">col</div>
+    <div class="col">
+    <li class="nav-item">
+          <form class="form-inline my-2 my-lg-0" action="pets.php" method="GET">
+            <select class="form-control mr-sm-2" name="pet_type" aria-label="Select Pet Type">
+              <option value="">Select Pet Type</option>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+            </select>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
+          </form>
+        </li>
+    </div>
+    <div class="col">        
+      <li class="nav-item">
+      <form method="POST" action="">
+      <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
+            <input type="text" name="search" value="<?php echo htmlspecialchars($searchQuery); ?>" placeholder="Search...">
+          </form>
+        </li>
+</div>
 
   </div>
+  <br> 
+  <br> 
+
   <div class="row">
     <div class="col">    
         <p> PETS VICTORIA IS A DEDICATED PET ADOPTION ORGANIZATION BASED IN VICTORIA, AUSTRALIA, FOCUSED ON PROVIDING A SAFE AND LOVING ENVIRONMENT FOR PETS IN NEED. WITH A COMPASSIONATE APPROACH, PETS VICTORIA WORKS TIRELESSLY TO RESCUE, REHABILITATE, AND REHOME DOGS, CATS, AND OTHER ANIMALS. THEIR MISSION IS TO CONNECT THESE DESERVING PETS WITH CARING INDIVIDUALS AND FAMILIES, CREATING LIFELONG BONDS. THE ORGANIZATION OFFERS A RANGE OF SERVICES, INCLUDING ADOPTION COUNSELING, PET EDUCATION, AND COMMUNITY SUPPORT PROGRAMS, ALL AIMED AT PROMOTING RESPONSIBLE PET OWNERSHIP AND REDUCING THE NUMBER OF HOMELESS ANIMALS. </p> 
     </div>
-    <div class="col">col</div>
-
-  </div>
-
-    
-    </div>
+</div>
 
  
     <?php include './includes/footer.inc'; ?>
