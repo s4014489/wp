@@ -36,22 +36,19 @@
 <div class="container"> 
 <?php
 
-// Check if user_id is stored in session
-
+// Start the session
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); 
 }
 
-
-
-// Assuming you already have the user_id from the session as shown before
+// Check if user_id is stored in session
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 
     // Fetch user data and pets for the specific user_id
-    $sql = "SELECT users.id AS user_id, pets.* FROM pets 
-            JOIN users ON pets.user_id = users.id 
-            WHERE users.id = ?";
+    $sql = "SELECT users.user_id, users.username, pets.* FROM pets 
+            JOIN users ON pets.user_id = users.user_id 
+            WHERE users.user_id = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt) {
@@ -74,9 +71,10 @@ if (isset($_SESSION['user_id'])) {
                     echo '<p>No image available.</p>';
                 }
                 
-                // Display user_id (optional)
-                echo '<p>User ID: ' . htmlspecialchars($pet['user_id']) . '</p>'; // Display user_id if needed
-                
+                // Display user_id and username
+                echo '<p>User ID: ' . htmlspecialchars($pet['user_id']) . '</p>'; // Display user_id
+                echo '<p>Username: ' . htmlspecialchars($pet['username']) . '</p>'; // Display username
+
                 // Edit and Delete buttons
                 echo '<div class="button-container">';
                 echo '<a href="edit_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="edit-button">Edit</a>';
@@ -96,6 +94,7 @@ if (isset($_SESSION['user_id'])) {
     echo '<p>Error: User is not logged in.</p>'; // Handle case where user is not logged in
 }
 ?>
+
 </div> 
 
 <?php include './includes/footer.inc'; ?>
@@ -105,4 +104,5 @@ if (isset($_SESSION['user_id'])) {
 </body>
 </body>
 </html>
+
 
