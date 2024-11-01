@@ -34,62 +34,52 @@
 
 <div class="container"> 
 <?php
-include './includes/db_connect.inc'; // Make sure to include your database connection
+// Check if the form has been submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Initialize variables
+    $name = '';
+    $email = '';
+    $password = '';
+    $profileImage = '';
 
-// Check if user is logged in
-if (isset($_SESSION['user_id'])) {
-    $userId = $_SESSION['user_id'];
-
-    // Prepare the SQL query to fetch pets for the logged-in user
-    $query = "SELECT * FROM pets WHERE user_id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $userId); // 'i' for integer type
-
-    // Execute the query
-    if ($stmt->execute()) {
-        $result = $stmt->get_result();
-
-        // Check if any pets are found
-        if ($result->num_rows > 0) {
-            echo '<div class="container">';
-            echo '<h2>Your Pets</h2>';
-            echo '<div class="row">'; // Start a new row for Bootstrap grid
-
-            while ($row = $result->fetch_assoc()) {
-                ?>
-                <div class="col-md-4"> <!-- Adjust column size as needed -->
-                    <div class="card" style="width: 18rem; margin: 10px;">
-                        <img src="<?php echo 'images/' . htmlspecialchars($row["image"]); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row["name"]); ?>">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo ($row["name"]); ?></h5>
-                            <a href="details.php?petid=<?php echo $row['petid']; ?>" class="btn btn-primary">View Details</a>
-                            <a href="edit_pet.php?petid=<?php echo $row['petid']; ?>" class="btn btn-secondary">Edit</a>
-                            <a href="delete_pet.php?petid=<?php echo $row['petid']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this pet?');">Delete</a>
-                        </div>
-                    </div>
-                </div>
-                <?php
-            }
-
-            echo '</div>'; // Close the row
-            echo '</div>'; // Close the container
-        } else {
-            echo '<p>You have no pets.</p>'; // Message when no pets are available
-        }
-    } else {
-        echo "Error fetching pets: " . $stmt->error;
+    // Check if each field is set and assign it to the variable
+    if (isset($_POST['name'])) {
+        $name = $_POST['name'];
     }
 
-    $stmt->close();
-    $conn->close();
+    if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+    }
+
+    if (isset($_POST['password'])) {
+        $password = $_POST['password'];
+    }
+
+    // Check if an image file was uploaded
+    if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] == UPLOAD_ERR_OK) {
+        // Handle file upload (you may want to validate the file type and size here)
+        $profileImage = $_FILES['profile_image']['name']; // Store the image name or path as needed
+        // Move the uploaded file to your desired directory
+        move_uploaded_file($_FILES['profile_image']['tmp_name'], "uploads/" . $profileImage);
+    } else {
+        // Handle the case where no image was uploaded or an error occurred
+        $profileImage = ''; // or set a default image or handle the error
+    }
+
+    // Example: Save user data to the database (this is just a placeholder)
+    // saveUser ($name, $email, $password, $profileImage);
+
+    // Redirect or display a success message
+    echo "User  added successfully!";
 } else {
-    echo "You must be logged in to view your pets.";
+    // If the form was not submitted, redirect or show an error
+    echo "No data submitted.";
 }
 ?>
+
 </div> 
 
 <?php include './includes/footer.inc'; ?>
-
 
 <script src="js/main.js"></script>
 

@@ -28,6 +28,7 @@ include './includes/header.inc';
     </div> 
 
     <?php
+    session_start(); // Start the session
     // Check if the user is logged in
     if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         echo "You must be logged in to add a pet.";
