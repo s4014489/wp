@@ -37,11 +37,13 @@
 <?php
 
 // Check if user_id is stored in session
-$_SESSION['user_id'] = $user_id; // 
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); 
 }
+
+$_SESSION['user_id'] = $user_id; // 
+
 
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id']; // Get the user_id from the session
