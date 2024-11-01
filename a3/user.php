@@ -36,48 +36,40 @@
 <br>
 <div class="container"> 
 <?php
-// Check if the form has been submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Initialize variables
-    $name = '';
-    $email = '';
-    $password = '';
-    $profileImage = '';
+// Assuming user_id is passed as a GET parameter
+$user_id = $_GET['user_id'];
 
-    // Check if each field is set and assign it to the variable
-    if (isset($_POST['name'])) {
-        $name = $_POST['name'];
+// Fetch pets for the specific user_id
+$sql = "SELECT * FROM pets WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    while($pet = $result->fetch_assoc()) {
+        // Display each pet in a card format
+        echo '<div class="card">';
+        echo '<h3>' . htmlspecialchars($pet['name']) . '</h3>';
+        echo '<p>Type: ' . htmlspecialchars($pet['type']) . '</p>';
+        echo '<p>Age: ' . htmlspecialchars($pet['age']) . ' years</p>';
+        echo '<img src="' . htmlspecialchars($pet['image_url']) . '" alt="' . htmlspecialchars($pet['name']) . '">';
+        
+        // Edit and Delete buttons
+        echo '<div class="button-container">';
+        echo '<a href="edit_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="edit-button">Edit</a>';
+        echo '<a href="delete_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
+        echo '</div>'; // Close button-container
+        echo '</div>'; // Close card
     }
-
-    if (isset($_POST['email'])) {
-        $email = $_POST['email'];
-    }
-
-    if (isset($_POST['password'])) {
-        $password = $_POST['password'];
-    }
-
-    // Check if an image file was uploaded
-    if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] == UPLOAD_ERR_OK) {
-        // Handle file upload (you may want to validate the file type and size here)
-        $profileImage = $_FILES['profile_image']['name']; // Store the image name or path as needed
-        // Move the uploaded file to your desired directory
-        move_uploaded_file($_FILES['profile_image']['tmp_name'], "uploads/" . $profileImage);
-    } else {
-        // Handle the case where no image was uploaded or an error occurred
-        $profileImage = ''; // or set a default image or handle the error
-    }
-
-    // Example: Save user data to the database (this is just a placeholder)
-    // saveUser ($name, $email, $password, $profileImage);
-
-    // Redirect or display a success message
-    echo "User  added successfully!";
 } else {
-    // If the form was not submitted, redirect or show an error
-    echo "No data submitted.";
+    echo '<p>No pets found for this user.</p>';
 }
+
+$stmt->close();
+$conn->close();
 ?>
+
 
 </div> 
 
