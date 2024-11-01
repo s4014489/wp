@@ -36,46 +36,60 @@
 <br>
 <div class="container"> 
 <?php
-// Check if user_id is set in the GET request
-if (isset($_GET['user_id'])) {
-    $user_id = $_GET['user_id'];
+session_start(); // Start the session
+
+// Check if user_id is stored in session
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id']; // Get the user_id from the session
 
     // Fetch pets for the specific user_id
     $sql = "SELECT * FROM pets WHERE user_id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    
+    if ($stmt) {
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        while($pet = $result->fetch_assoc()) {
-            // Display each pet in a card format
-            echo '<div class="card">';
-            echo '<h3>' . htmlspecialchars($pet['name']) . '</h3>';
-            echo '<p>Type: ' . htmlspecialchars($pet['type']) . '</p>';
-            echo '<p>Age: ' . htmlspecialchars($pet['age']) . ' years</p>';
-            echo '<img src="' . htmlspecialchars($pet['image_url']) . '" alt="' . htmlspecialchars($pet['name']) . '">';
-            
-            // Display user_id (optional)
-            echo '<p>User ID: ' . htmlspecialchars($pet['user_id']) . '</p>'; // Display user_id if needed
-            
-            // Edit and Delete buttons
-            echo '<div class="button-container">';
-            echo '<a href="edit_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="edit-button">Edit</a>';
-            echo '<a href="delete_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
-            echo '</div>'; // Close button-container
-            echo '</div>'; // Close card
+        if ($result->num_rows > 0) {
+            while($pet = $result->fetch_assoc()) {
+                // Display each pet in a card format
+                echo '<div class="card">';
+                echo '<h3>' . htmlspecialchars($pet['name']) . '</h3>';
+                echo '<p>Type: ' . htmlspecialchars($pet['type']) . '</p>';
+                echo '<p>Age: ' . htmlspecialchars($pet['age']) . ' years</p>';
+                
+                // Check if the image URL is valid
+                if (!empty($pet['image_url'])) {
+                    echo '<img src="' . htmlspecialchars($pet['image_url']) . '" alt="' . htmlspecialchars($pet['name']) . '">';
+                } else {
+                    echo '<p>No image available.</p>';
+                }
+                
+                // Display user_id (optional)
+                echo '<p>User ID: ' . htmlspecialchars($pet['user_id']) . '</p>'; // Display user_id if needed
+                
+                // Edit and Delete buttons
+                echo '<div class="button-container">';
+                echo '<a href="edit_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="edit-button">Edit</a>';
+                echo '<a href="delete_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
+                echo '</div>'; // Close button-container
+                echo '</div>'; // Close card
+            }
+        } else {
+            echo '<p>No pets found for this user. <a href="add_pet.php">Add a new pet</a></p>'; // Link to add a new pet
         }
-    } else {
-        echo '<p>No pets found for this user.</p>';
-    }
 
-    $stmt->close();
+        $stmt->close();
+    } else {
+        echo '<p>Error: Could not prepare statement.</p>';
+    }
+} else {
+    echo '<p>Error: User is not logged in.</p>'; // Handle case where user is not logged in
 }
 
 $conn->close();
 ?>
-
 
 </div> 
 
