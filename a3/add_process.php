@@ -1,9 +1,14 @@
 <?php
 session_start();
+ include './includes/db_connect.inc'; 
+
 
 // Check if user is logged in
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
+
+    $_SESSION['isLoggedIn'] = true; 
+    $_SESSION['user_id'] = $user_id;
 
     // Retrieve form data
     $petName = $_POST['petname'] ?? '';
@@ -30,14 +35,6 @@ if (isset($_SESSION['user_id'])) {
         exit;
     }
 
-    // Database connection (assuming you have a connection setup)
-    $servername = "your_servername";
-    $db_username = "your_username";
-    $db_password = "your_password";
-    $dbname = "your_dbname";
-
-    $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -60,4 +57,5 @@ if (isset($_SESSION['user_id'])) {
 } else {
     echo "You must be logged in to add a pet.";
 }
+
 ?>

@@ -30,7 +30,7 @@ include './includes/header.inc';
     <?php
     session_start(); // Start the session
     // Check if the user is logged in
-    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isLoggedIn'] !== true) {
         echo "You must be logged in to add a pet.";
         exit; // Stop further execution
     }
