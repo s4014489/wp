@@ -9,7 +9,8 @@ $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search 
 <nav class="py-3 navbar navbar-expand-lg fixed-top auto-hiding-navbar">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img class="logo" src="./images/logo.png" width="55px" /> 
+      <img class="logo" src="./images/logo.png" width="55px" alt="Logo" /> 
+      Sticky top
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -34,7 +35,7 @@ $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search 
             <a class="nav-link" href="logoff.php">Log Off</a>
           </li>
           <li class="nav-item"> 
-            <a class="nav-link" href="user.php">User </a>
+            <a class="nav-link" href="user.php">User  </a>
           </li> 
         <?php else: ?>
           <li class="nav-item">
@@ -43,11 +44,10 @@ $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search 
         <?php endif; ?>
         
         <!-- Search Box -->
-        <li class="nav-item">
-          <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
-            <input type="text" name="search" value="<?php echo htmlspecialchars($searchQuery); ?>" placeholder="Search...">
-          </form>
-        </li>
+        <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
+          <input class="form-control mr-sm-2" type="text" name="search" value="<?php echo htmlspecialchars($searchQuery); ?>" placeholder="Search...">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
         
       </ul>
     </div>
