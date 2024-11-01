@@ -4,8 +4,6 @@
 
 
 // Check if user is logged in
-if (isset($_SESSION['user_id'])) {
-    $userId = $_SESSION['user_id'];
 
     $_SESSION['isLoggedIn'] = true; 
     $_SESSION['user_id'] = $user_id;
@@ -47,7 +45,7 @@ if (isset($_SESSION['user_id'])) {
     // Execute the query
     if ($stmt->execute()) {
         echo "Pet added successfully!";
-        
+
     } else {
         echo "Error adding pet: " . $stmt->error;
     }
