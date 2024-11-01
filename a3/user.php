@@ -44,14 +44,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 
+// Assuming you already have the user_id from the session as shown before
 if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id']; // Get the user_id from the session
+    $user_id = $_SESSION['user_id'];
 
-// Retrieve user data from the database
-$_SESSION['user_id'] = $user_id; // 
-
-    // Fetch pets for the specific user_id
-    $sql = "SELECT * FROM pets WHERE user_id = ?";
+    // Fetch user data and pets for the specific user_id
+    $sql = "SELECT users.id AS user_id, pets.* FROM pets 
+            JOIN users ON pets.user_id = users.id 
+            WHERE users.id = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt) {
@@ -60,7 +60,7 @@ $_SESSION['user_id'] = $user_id; //
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            while($pet = $result->fetch_assoc()) {
+            while ($pet = $result->fetch_assoc()) {
                 // Display each pet in a card format
                 echo '<div class="card">';
                 echo '<h3>' . htmlspecialchars($pet['name']) . '</h3>';
@@ -95,9 +95,6 @@ $_SESSION['user_id'] = $user_id; //
 } else {
     echo '<p>Error: User is not logged in.</p>'; // Handle case where user is not logged in
 }
-
-$conn->close();
-?>
 
 </div> 
 
