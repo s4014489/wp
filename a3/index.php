@@ -40,33 +40,39 @@
                     <button class="btn btn-primary">Learn More</button>
                 </div>
                 <div class="col-md-6">
-                <div id="carouselExampleIndicators" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-</div>
+                 <div id="recentImagesCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <?php
+                // Directory where images are stored
+                $imageDir = './images/';
+                $images = glob($imageDir . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+
+                // Sort images by modification time (most recent first)
+                usort($images, function($a, $b) {
+                    return filemtime($b) - filemtime($a);
+                });
+
+                // Limit to the 5 most recent images
+                $recentImages = array_slice($images, 0, 3);
+
+                // Display the images in the carousel
+                foreach ($recentImages as $index => $image) {
+                    $activeClass = ($index === 0) ? 'active' : '';
+                    echo '<div class="carousel-item ' . $activeClass . '">';
+                    echo '<img src="' . htmlspecialchars($image) . '" class="d-block w-100" alt="Recent Image">';
+                    echo '</div>';
+                }
+                ?>
+            </div>
+            <a class="carousel-control-prev" href="#recentImagesCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#recentImagesCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+              </div> 
             </div>
             </div>
         </div>
@@ -104,7 +110,7 @@
   </div>
   <br> 
   <br> 
-
+<div>
   <div class="row">
     <div class="col">    
         <p> PETS VICTORIA IS A DEDICATED PET ADOPTION ORGANIZATION BASED IN VICTORIA, AUSTRALIA, FOCUSED ON PROVIDING A SAFE AND LOVING ENVIRONMENT FOR PETS IN NEED. WITH A COMPASSIONATE APPROACH, PETS VICTORIA WORKS TIRELESSLY TO RESCUE, REHABILITATE, AND REHOME DOGS, CATS, AND OTHER ANIMALS. THEIR MISSION IS TO CONNECT THESE DESERVING PETS WITH CARING INDIVIDUALS AND FAMILIES, CREATING LIFELONG BONDS. THE ORGANIZATION OFFERS A RANGE OF SERVICES, INCLUDING ADOPTION COUNSELING, PET EDUCATION, AND COMMUNITY SUPPORT PROGRAMS, ALL AIMED AT PROMOTING RESPONSIBLE PET OWNERSHIP AND REDUCING THE NUMBER OF HOMELESS ANIMALS. </p> 
