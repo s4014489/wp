@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Verify the password against the hashed password
         if (password_verify($password, $hashed_password)) {
             $_SESSION['username'] = $username; // Set session variable
+            $_SESSION['user_id'] = $user_id; // Save user ID in session
             header('Location: user.php'); // Redirect to a user page
             exit();
         } else {
@@ -64,9 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = "Invalid username or password.";
     }
 
-    $_SESSION['username'] = $result->fetch_assoc()['username'];
-    $_SESSION['user_id'] = $result->fetch_assoc()['user_id'];
-
+    
     $stmt->close(); // Close the statement
 }
 ?>
@@ -116,4 +115,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 </html>
+
+
 
