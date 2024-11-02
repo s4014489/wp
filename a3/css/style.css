@@ -76,7 +76,10 @@
     background-color: #008080;
   }
   
-
+  .nav-item{ 
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+  }
 
 
 /* Table */ 
