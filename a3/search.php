@@ -6,16 +6,6 @@
 
 
 <?php
-
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 $searchQuery = '';
 $results = [];
 $pet_type = isset($_GET['pet_type']) ? $_GET['pet_type'] : '';
