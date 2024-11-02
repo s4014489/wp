@@ -60,11 +60,13 @@ $stmt->bind_param("isssssss", $userId, $petName, $description, $image, $caption,
 
 // Execute the query
 if ($stmt->execute()) {
-    echo "Pet added successfully!";
+    // Redirect to pets.php after successful addition
+    header("Location: pets.php");
+    exit; // Ensure no further code is executed after the redirect
 } else {
+    header("Location: add.php");
     echo "Error adding pet: " . $stmt->error;
 }
-
 // Close statement and connection
 $stmt->close();
 $conn->close();
