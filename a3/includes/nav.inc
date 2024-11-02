@@ -42,6 +42,7 @@ $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search 
             <a class="nav-link" href="login.php">Login</a>
           </li>
         <?php endif; ?>
+        </ul> 
         
         <!-- Search Box -->
         <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
