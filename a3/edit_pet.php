@@ -87,6 +87,8 @@ function handleImageUpload($file) {
 }
 ?>
 <!-- HTML form for editing pet details -->
+<div class="container"> 
+
 <form method="POST" enctype="multipart/form-data">
     <input type="hidden" name="pet_id" value="<?php echo htmlspecialchars($pet['petid']); ?>">
     <label for="petname">Pet Name:</label>
@@ -108,4 +110,6 @@ function handleImageUpload($file) {
     <input type="file" name="image">
     
     <input type="submit" value="Update Pet">
+    <a href="pets.php">Cancel</a>
 </form>
+</div>
