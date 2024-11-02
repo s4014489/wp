@@ -52,7 +52,7 @@ if ($result) {
         <?php else: ?>
             <ul>
                 <?php foreach ($results as $pet): ?>
-                    <li><?php echo htmlspecialchars($pet['name']) . ' (' . htmlspecialchars($pet['type']) . ')'; ?></li>
+                    <li><?php echo htmlspecialchars($pet['petname']) . ' (' . htmlspecialchars($pet['type']) . ')'; ?></li>
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>
