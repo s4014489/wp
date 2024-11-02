@@ -55,8 +55,12 @@ if ($result) {
             <div class="card">
                 <a href="pet_detail.php?petid=<?php echo urlencode($pet['petid']); ?>" class="card-link">
                     <div class="card-content">
-                        <h3><?php echo htmlspecialchars($pet['name']); ?></h3>
+                        <h3><?php echo htmlspecialchars($pet['petname']); ?></h3>
                         <p><?php echo htmlspecialchars($pet['type']); ?></p>
+                            <p><?php echo htmlspecialchars($pet['age']); ?></p>
+                            <p><?php echo htmlspecialchars($pet['location']); ?></p>
+
+
                     </div>
                 </a>
             </div>
