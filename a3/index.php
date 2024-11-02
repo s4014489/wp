@@ -32,9 +32,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1 class="display-4">Welcome to Pets Victoria</h1>
-                    <p class="lead">inset text.</p>
-                    <button class="btn btn-primary">Learn More</button>
+                    <h1 class="headings">Welcome to Pets Victoria</h1>
+                    <p class="lead">Welcome to Pet Adoption</p>
                 </div>
                 <div class="col-md-6">
                  <div id="recentImagesCarousel" class="carousel slide" data-ride="carousel">
@@ -84,10 +83,9 @@
             <li class="nav-item">
             <form method="GET" action="search.php">
             <select name="pet-type" id="pet-type">
-                <option value="">--All Types--</option>
+                <option value="null">--All Types--</option>
                 <option value="Cat">Cat</option>
                 <option value="Dog">Dog</option>
-                <!-- Add more options as needed -->
             </select>
             <input type="submit" value="Search">
         </form>
