@@ -25,7 +25,7 @@ if ($result) {
     // Filter the data based on the search query
     if ($searchQuery) {
         foreach ($petData as $pet) {
-            if (stripos($pet['name'], $searchQuery) !== false) {
+            if (stripos($pet['petname'], $searchQuery) !== false) {
                 $results[] = $pet;
             }
         }
