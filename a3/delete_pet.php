@@ -5,21 +5,6 @@
 
 
 <?php
-session_start();
-
-// Create connection
-$conn = new mysqli($servername, $db_username, $db_password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Check if the user is logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php"); 
-    exit();
-}
 
 // Check if the pet ID is provided
 if (!isset($_GET['petid'])) {
