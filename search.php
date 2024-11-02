@@ -1,42 +1,36 @@
-<?php include './includes/db_connect.inc'; ?> 
+
 <?php include './includes/header.inc'; ?>
+<?php include './includes/nav.inc'; ?>
+<?php include './includes/db_connect.inc'; ?>
+
 
 
 <?php
+// search.php
 
+// Check if the search parameter is set
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Sanitize the search query to prevent XSS attacks
+$searchQuery = htmlspecialchars($searchQuery);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Dummy data for demonstration purposes
+$petData = [
+    ['name' => 'Buddy', 'type' => 'dog'],
+    ['name' => 'Mittens', 'type' => 'cat'],
+    ['name' => 'Rex', 'type' => 'dog'],
+    ['name' => 'Whiskers', 'type' => 'cat'],
+];
 
-$searchQuery = '';
+// Filter the data based on the search query
 $results = [];
-$pet_type = isset($_GET['pet_type']) ? $_GET['pet_type'] : '';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $searchQuery = $_POST['search'];
-
-    // Prepare a SQL statement to prevent SQL injection
-    $stmt = $conn->prepare("SELECT * FROM items WHERE name LIKE ? OR description LIKE ?");
-    $searchTerm = "%" . $searchQuery . "%";
-    $stmt->bind_param("ss", $searchTerm, $searchTerm);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-
-    // Fetch results
-    while ($row = $result->fetch_assoc()) {
-        $results[] = $row;
+if ($searchQuery) {
+    foreach ($petData as $pet) {
+        if (stripos($pet['name'], $searchQuery) !== false) {
+            $results[] = $pet;
+        }
     }
-
-    $stmt->close();
 }
-
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -44,27 +38,23 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Functionality</title>
+    <title>Search Results</title>
 </head>
 <body>
-    <h1>Search</h1>
-    <form method="POST" action="">
-        <input type="text" name="search" value="<?php echo htmlspecialchars($searchQuery); ?>" placeholder="Search...">
-        <input type="submit" value="Search">
-    </form>
+    <div class="container">
+        <h1>Search Results for "<?php echo $searchQuery; ?>"</h1>
+        
+        <?php if (empty($results)): ?>
+            <p>No results found.</p>
+        <?php else: ?>
+            <ul>
+                <?php foreach ($results as $pet): ?>
+                    <li><?php echo htmlspecialchars($pet['name']) . ' (' . htmlspecialchars($pet['type']) . ')'; ?></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    </div>
+    <?php include './includes/footer.inc'; ?>
 
-    <?php if (!empty($results)): ?>
-        <h2>Search Results:</h2>
-        <ul>
-            <?php foreach ($results as $item): ?>
-                <li>
-                    <strong><?php echo htmlspecialchars($item['name']); ?></strong><br>
-                    <?php echo htmlspecialchars($item['description']); ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    <?php elseif ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
-        <p>No results found for "<?php echo htmlspecialchars($searchQuery); ?>".</p>
-    <?php endif; ?>
 </body>
 </html>
