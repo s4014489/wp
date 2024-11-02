@@ -14,3 +14,5 @@ $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search 
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>
+</nav>
+
