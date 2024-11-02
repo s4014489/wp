@@ -35,39 +35,7 @@ include './includes/nav.inc';
     <br>
     <div class="container"> 
     <?php
-// Start the session
-if (session_status() === PHP_SESSION_NONE) {
-    session_start(); 
-}
 
-// Include necessary files
-include './includes/db_connect.inc'; 
-include './includes/header.inc'; 
-include './includes/nav.inc'; 
-?>
-
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User - Pets Victoria</title>
-    <meta name="author" content="Max Thum">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Permanent+Marker&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
-</head>
-
-    <div class="container">
-        <h2 class="htext">User </h2>
-    </div> 
-
-    <br>
-    <br>
-    <?php
     // Check if user_id is stored in session
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
