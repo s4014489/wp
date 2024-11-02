@@ -89,22 +89,22 @@
 
   /* Edit button styling */
 .edit-button {
-  background-color: #4CAF50; /* Green */
+    background-color: #4CAF50; /* Green */
 }
 
 .edit-button:hover {
-  background-color: #45a049; /* Darker green */
-  transform: translateY(-2px); /* Slight lift effect */
+    background-color: #45a049; /* Darker green */
+    transform: translateY(-2px); /* Slight lift effect */
 }
 
 /* Delete button styling */
 .delete-button {
-  background-color: #f44336; /* Red */
+    background-color: #f44336; /* Red */
 }
 
 .delete-button:hover {
-  background-color: #e53935; /* Darker red */
-  transform: translateY(-2px); /* Slight lift effect */
+    background-color: #e53935; /* Darker red */
+    transform: translateY(-2px); /* Slight lift effect */
 }
 
 
