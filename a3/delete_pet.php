@@ -33,20 +33,22 @@ $pet = $result->fetch_assoc();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $image_path = 'images/' . $pet['image'];
     if (file_exists($image_path)) {
-        unlink($image_path); 
+        unlink($image_path); // Delete the image file if it exists
     }
 
+    // Prepare the delete statement
     $delete_stmt = $conn->prepare("DELETE FROM pets WHERE petid = ?");
     if (!$delete_stmt) {
         die("Prepare failed: " . $conn->error);
     }
     
-    $delete_stmt->bind_param("i", $petid);
+    $delete_stmt->bind_param("i", $petid); // Bind the petid parameter
     
+    // Execute the delete statement
     if ($delete_stmt->execute()) {
         if ($delete_stmt->affected_rows > 0) {
             // Successfully deleted
-            header("Location: pets.php"); 
+            header("Location: pets.php"); // Redirect to pets.php
             exit();
         } else {
             // Deletion failed, no rows affected
@@ -56,5 +58,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Deletion failed: " . $delete_stmt->error);
     }
     
-    $delete_stmt->close();
+    $delete_stmt->close(); // Close the statement
 }
