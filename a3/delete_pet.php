@@ -70,3 +70,4 @@ $stmt->close(); // Close the initial statement
     <a href="user.php">Cancel</a>
 </form>
 </div> 
+<?php include './includes/footer.inc'; ?>

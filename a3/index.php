@@ -10,10 +10,7 @@
 </import>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Pets Victoria</title>
-    <meta name="author" content="Max Thum">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -24,7 +21,7 @@
 <?php include './includes/db_connect.inc'; ?>
 
 
-<body padding ="30">
+<body">
 
 
 
@@ -88,8 +85,8 @@
             <form method="GET" action="search.php">
             <select name="pet-type" id="pet-type">
                 <option value="">--All Types--</option>
-                <option value="cat">Cat</option>
-                <option value="dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="Dog">Dog</option>
                 <!-- Add more options as needed -->
             </select>
             <input type="submit" value="Search">
