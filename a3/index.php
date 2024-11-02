@@ -74,27 +74,29 @@
   <br> 
   <br>
 
-    <div class="container">
-  <div class="row">
-    <div class="col">
-    <li class="nav-item">
-          <form class="form-inline my-2 my-lg-0" action="pets.php" method="GET">
-            <select class="form-control mr-sm-2" name="pet_type" aria-label="Select Pet Type">
-              <option value="">Select Pet Type</option>
-              <option value="dog">Dog</option>
-              <option value="cat">Cat</option>
-            </select>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
-          </form>
-        </li>
+  <div class="container">
+    <div class="row">
+        <div class="col">
+            <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
+                    <select class="form-control mr-sm-2" name="pet_type" aria-label="Select Pet Type">
+                        <option value="">Select Pet Type</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                    </select>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
+                </form>
+            </li>
+        </div>
+        <div class="col">        
+            <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
+                    <input type="text" name="search" value="<?php echo htmlspecialchars($searchQuery); ?>" placeholder="Search...">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </li>
+        </div>
     </div>
-    <div class="col">        
-      <li class="nav-item">
-      <form method="POST" action="">
-      <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
-            <input type="text" name="search" value="<?php echo htmlspecialchars($searchQuery); ?>" placeholder="Search...">
-          </form>
-        </li>
 </div>
 
   </div>
