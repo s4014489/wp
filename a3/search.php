@@ -52,8 +52,19 @@ if ($result) {
         <?php else: ?>
             <ul>
                 <?php foreach ($results as $pet): ?>
-                    <li><?php echo htmlspecialchars($pet['petname']) . ' (' . htmlspecialchars($pet['type']) . ')'; ?></li>
-                <?php endforeach; ?>
+                    <div class="card-container">
+    <?php foreach ($results as $pet): ?>
+        <div class="card">
+            <a href="pet_detail.php?petid=<?php echo urlencode($pet['petid']); ?>" class="card-link">
+                <div class="card-content">
+                    <h3><?php echo htmlspecialchars($pet['name']); ?></h3>
+                    <p><?php echo htmlspecialchars($pet['type']); ?></p>
+                </div>
+            </a>
+        </div>
+    <?php endforeach; ?>
+</div>
+
             </ul>
         <?php endif; ?>
     </div>
