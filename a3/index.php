@@ -53,9 +53,9 @@
     <div class="carousel-item">
       <img src="./images/cat1.jpeg" class="d-block w-100" alt="...">
     </div>
-    /*<div class="carousel-item">
+    <div class="carousel-item">
       <img src.="/images/cat1.jpeg" class="d-block w-100" alt="...">
-    </div>*/
+    </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -79,8 +79,6 @@
         <div class="col">
             <li class="nav-item">
             <form method="GET" action="search.php">
-            <input type="text" name="search" placeholder="Search for pets..." required>
-            <label for="pet-type">Select Pet Type:</label>
             <select name="pet-type" id="pet-type">
                 <option value="">--All Types--</option>
                 <option value="cat">Cat</option>
