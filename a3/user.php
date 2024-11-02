@@ -53,7 +53,7 @@ include './includes/nav.inc';
             if ($result->num_rows > 0) {
                 while ($pet = $result->fetch_assoc()) {
                     // Validate petid before using it
-                    $pet_id = isset($pet['petid']) && is_numeric($pet['petid']) ? htmlspecialchars($pet['petid']) : '0';
+                    $petid = isset($pet['petid']) && is_numeric($pet['petid']) ? htmlspecialchars($pet['petid']) : '0';
 
                     // Display each pet in a card format
                     echo '<div class="card">';
@@ -74,8 +74,8 @@ include './includes/nav.inc';
 
                     // Edit and Delete buttons
                     echo '<div class="button-container">';
-                    echo '<a href="edit_pet.php?pet_id=' . $pet_id . '" class="edit-button">Edit</a>';
-                    echo '<a href="delete_pet.php?pet_id=' . $pet_id . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
+                    echo '<a href="edit_pet.php?petid=' . $petid . '" class="edit-button">Edit</a>';
+                    echo '<a href="delete_pet.php?petid=' . $petid . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
                     echo '</div>'; // Close button-container
                     echo '</div>'; // Close card
                 }
