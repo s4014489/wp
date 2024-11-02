@@ -6,7 +6,7 @@ $isLoggedIn = isset($_SESSION['username']);
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search query from the URL
 ?>
 
-<nav class="navbar" style="background-color: #e3f2fd;">
+<nav class="navbar-expand-lg bg-body-tertiary">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
