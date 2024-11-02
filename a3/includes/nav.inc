@@ -6,7 +6,7 @@ $isLoggedIn = isset($_SESSION['username']);
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search query from the URL
 ?>
 
-<nav class="navbar  navbar-expand-lgt" style="background-color: #008080;">
+<nav class="navbar  navbar-expand-lgt navbar-light " style="background-color: #008080;">
   <a class="navbar-brand" href="index.php">
     <img class="logo" src="./images/logo.png" width="55px" alt="Logo" /> 
   </a>
