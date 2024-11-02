@@ -18,10 +18,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
+<?php include './includes/header.inc'; ?>
+    <?php include('.includes/nav.inc'); ?>
+
 
 <body padding ="30">
-    <?php include './includes/header.inc'; ?>
-    <?php include('includes/nav.inc'); ?>
 
     <?php
 if (session_status() === PHP_SESSION_NONE) {

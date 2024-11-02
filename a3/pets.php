@@ -19,18 +19,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-
-
-<body>
 <?php include './includes/header.inc'; ?>
 <?php include './includes/db_connect.inc'; ?>
-<?php include('includes/nav.inc'); ?>
+<?php include('./includes/nav.inc'); ?>
 
-
-
-</div> 
 
 <body> 
+
+
 <br> 
 <br>
     <div class="container">

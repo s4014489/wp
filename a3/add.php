@@ -14,14 +14,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
 </head>
 
-<body>
+
 <?php 
 include './includes/header.inc'; 
 include './includes/nav.inc'; 
-
 include './includes/db_connect.inc'; 
 
 ?>
+
+<body>
+
 <br>
 <br> 
 <div class="container">
