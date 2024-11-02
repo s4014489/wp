@@ -67,6 +67,6 @@ $stmt->close(); // Close the initial statement
 <form method="POST">
     <p>Are you sure you want to delete the pet: <?php echo htmlspecialchars($pet['petname']); ?>?</p>
     <input type="submit" value="Delete">
-    <a href="pets.php">Cancel</a>
+    <a href="user.php">Cancel</a>
 </form>
 </div> 

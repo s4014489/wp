@@ -118,6 +118,6 @@ function handleImageUpload($file) {
     <br>
 
     <input type="submit" value="Update Pet">
-    <a href="pets.php">Cancel</a>
+    <a href="user.php">Cancel</a>
 </form>
 </div>
