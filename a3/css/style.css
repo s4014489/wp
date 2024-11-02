@@ -17,11 +17,17 @@
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
-    left: 0;
+    position: fixed; /* or 'absolute' depending on your layout */
     bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px; /* Set the height of your footer */
     width: 100%;
   }
+  .body {
+    margin: 0;
+    padding-bottom: 60px; /* Adjust this value based on the footer height */
+}
 
   .headings h1 h2 h3 h4 h5 .card-title {
     font-family: "Ysabeau SC", sans-serif;
