@@ -1,5 +1,6 @@
 <?php include('includes/db_connect.inc'); ?>
 <?php include('includes/header.inc'); ?>
+<?php include('includes/nav.inc'); ?>
 
 <!DOCTYPE html>
 <html lang="en">

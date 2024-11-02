@@ -24,6 +24,8 @@
 <body>
 <?php include './includes/header.inc'; ?>
 <?php include './includes/db_connect.inc'; ?>
+<?php include('includes/nav.inc'); ?>
+
 
 
         <div class="container">
@@ -105,4 +107,4 @@ if (isset($_SESSION['user_id'])) {
 </body>
 </html>
 
-
+ 

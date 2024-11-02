@@ -21,6 +21,8 @@
 
 <body padding ="30">
     <?php include './includes/header.inc'; ?>
+    <?php include('includes/nav.inc'); ?>
+
     <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); 
@@ -58,6 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $error = "Invalid username or password.";
     }
+
+    $_SESSION['username'] = $result->fetch_assoc()['username'];
+    $_SESSION['user_id'] = $result->fetch_assoc()['user_id'];
 
     $stmt->close(); // Close the statement
 }

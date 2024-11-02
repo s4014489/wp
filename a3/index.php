@@ -21,6 +21,8 @@
 
 <body padding ="30">
     <?php include './includes/header.inc'; ?>
+    <?php include('includes/nav.inc'); ?>
+
 
     <br>
     <br>
