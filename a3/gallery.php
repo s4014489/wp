@@ -61,13 +61,8 @@ if (mysqli_num_rows($result) > 0) {
 } 
 ?> 
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<br><br><br><br><br><br><br>
 
-    
 <?php include './includes/footer.inc'; ?>
 
 <script src="js/main.js"></script>

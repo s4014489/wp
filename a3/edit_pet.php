@@ -89,26 +89,34 @@ function handleImageUpload($file) {
 <!-- HTML form for editing pet details -->
 <div class="container"> 
 
+<h2>Edit Pet Details</h2>
+<br>
 <form method="POST" enctype="multipart/form-data">
     <input type="hidden" name="pet_id" value="<?php echo htmlspecialchars($pet['petid']); ?>">
     <label for="petname">Pet Name:</label>
     <input type="text" name="petname" value="<?php echo htmlspecialchars($pet['petname']); ?>" required>
-    
+    <br>
+
     <label for="type">Type:</label>
     <input type="text" name="type" value="<?php echo htmlspecialchars($pet['type']); ?>" required>
-    
+    <br>
+
     <label for="age">Age:</label>
     <input type="number" name="age" value="<?php echo htmlspecialchars($pet['age']); ?>" required>
-    
+    <br>
+
     <label for="location">Location:</label>
     <input type="text" name="location" value="<?php echo htmlspecialchars($pet['location']); ?>" required>
-    
+    <br>
+
     <label for="description">Description:</label>
     <textarea name="description" required><?php echo htmlspecialchars($pet['description']); ?></textarea>
-    
+    <br>
+
     <label for="image">Image:</label>
     <input type="file" name="image">
-    
+    <br>
+
     <input type="submit" value="Update Pet">
     <a href="pets.php">Cancel</a>
 </form>
