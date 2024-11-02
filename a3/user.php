@@ -28,7 +28,7 @@ include './includes/nav.inc';
 
 <body>
     <div class="container">
-        <h2 class="htext">User </h2>
+        <h2 class="htext">User  </h2>
     </div> 
 
     <br>
@@ -52,11 +52,15 @@ include './includes/nav.inc';
 
             if ($result->num_rows > 0) {
                 while ($pet = $result->fetch_assoc()) {
+                    // Debugging output to check the structure of $pet
+                    // Uncomment the line below for debugging purposes
+                    // var_dump($pet);
+
                     // Display each pet in a card format
                     echo '<div class="card">';
-                    echo '<h3>' . htmlspecialchars($pet['name']) . '</h3>';
-                    echo '<p>Type: ' . htmlspecialchars($pet['type']) . '</p>';
-                    echo '<p>Age: ' . htmlspecialchars($pet['age']) . ' years</p>';
+                    echo '<h3>' . (isset($pet['name']) ? htmlspecialchars($pet['name']) : 'Unknown Pet') . '</h3>';
+                    echo '<p>Type: ' . (isset($pet['type']) ? htmlspecialchars($pet['type']) : 'Unknown Type') . '</p>';
+                    echo '<p>Age: ' . (isset($pet['age']) ? htmlspecialchars($pet['age']) . ' years' : 'Unknown Age') . '</p>';
                     
                     // Check if the image URL is valid
                     if (!empty($pet['image_url'])) {
@@ -66,36 +70,28 @@ include './includes/nav.inc';
                     }
                     
                     // Display user_id and username
-                    echo '<p>User ID: ' . htmlspecialchars($pet['user_id']) . '</p>'; // Display user_id
-                    echo '<p>Username: ' . htmlspecialchars($pet['username']) . '</p>'; // Display username
+                    echo '<p>User ID: ' . (isset($pet['user_id']) ? htmlspecialchars($pet['user_id']) : 'Unknown User ID') . '</p>'; // Display user_id
+                    echo '<p>Username: ' . (isset($pet['username']) ? htmlspecialchars($pet['username']) : 'Unknown Username') . '</p>'; // Display username
 
                     // Edit and Delete buttons
                     echo '<div class="button-container">';
-                    echo '<a href="edit_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="edit-button">Edit</a>';
-                    echo '<a href="delete_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
+                    echo '<a href="edit_pet.php?pet_id=' . (isset($pet['id']) ? htmlspecialchars($pet['id']) : '0') . '" class="edit-button">Edit</a>';
+                    echo '<a href="delete_pet.php?pet_id=' . (isset($pet['id']) ? htmlspecialchars($pet['id']) : '0') . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
                     echo '</div>'; // Close button-container
                     echo '</div>'; // Close card
                 }
             } else {
-                echo '<p>No pets found for this user. <a href="add_pet.php">Add a new pet</a></p>'; // Link to add a new pet
+                echo '<p>No pets found for this user. <a href="add_pet.php">Add a new pet</a></p>'; // Display message if no pets are found
             }
-
-            $stmt->close();
         } else {
-            echo '<p>Error: Could not prepare statement.</p>';
+            echo '<p>Failed to prepare SQL statement.</p>'; // Display error message if SQL statement fails
         }
     } else {
-        echo '<p>Error: User is not logged in.</p>'; // Handle case where user is not logged in
+        echo '<p>You are not logged in. Please <a href="login.php">log in</a> to view your pets.</p>'; // Display message if user_id is not stored in session
     }
     ?>
-    </div> 
+    </div>
+    <?php include './includes/footer.inc'; 
 
-    <?php include './includes/footer.inc'; ?>
-
-<script src="js/main.js"></script>
-
-</body>
 </body>
 </html>
-
- 
