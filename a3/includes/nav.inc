@@ -7,6 +7,8 @@ $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search 
 ?>
 
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+<div class="container-fluid">
+
   <a class="navbar-brand" href="index.php">
     <img class="logo" src="./images/logo.png" width="55px" alt="Logo" /> 
   </a>
@@ -45,10 +47,9 @@ $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search 
       <input class="form-control mr-sm-2" type="text" name="search" value="<?php echo htmlspecialchars($searchQuery); ?>" placeholder="Search...">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-      </span>
+</span>
     </div>
-     
-    </div>
+  </div>
 
 </nav>
 
