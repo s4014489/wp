@@ -6,17 +6,12 @@ $isLoggedIn = isset($_SESSION['username']);
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search query from the URL
 ?>
 
-
-<nav class="navbar" style="background-color: #008080;">
-  <button class="navbar-toggler" type="button" data-toggle="collapse">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-light" style="background-color: #008080;">
   <a class="navbar-brand" href="index.php">
     <img class="logo" src="./images/logo.png" width="55px" alt="Logo" /> 
   </a>
-
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+  <div class="collapse navbar-collapse" id="navbarText">
+   <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
@@ -42,8 +37,12 @@ $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search 
           </li>
         <?php endif; ?>
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
+      <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
       <input class="form-control mr-sm-2" type="text" name="search" value="<?php echo htmlspecialchars($searchQuery); ?>" placeholder="Search...">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-  </div>
+    </div>
+
+</nav>
+
+
