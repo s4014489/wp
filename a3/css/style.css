@@ -72,6 +72,9 @@
     'opsz' 24; 
     color: white; 
   }
+  .navbar navbar-expand-lg { 
+    background-color: #008080;
+  }
   
 
 
