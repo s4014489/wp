@@ -1,34 +1,18 @@
-
-<?php include './includes/header.inc'; ?>
-<?php include './includes/nav.inc'; ?>
-<?php include './includes/db_connect.inc'; ?>
-
-
-
 <?php
-// Check if the search parameter is set
+include './includes/header.inc';
+include './includes/nav.inc';
+include './includes/db_connect.inc';
+
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Sanitize the search query to prevent XSS attacks
-$searchQuery = htmlspecialchars($searchQuery);
+// Prepare the SQL statement to prevent SQL injection
+$sql = "SELECT * FROM pets WHERE name LIKE ? OR type LIKE ? ORDER BY name ASC";
+$stmt = $pdo->prepare($sql);
+$searchTerm = "%" . $searchQuery . "%";
+$stmt->execute([$searchTerm, $searchTerm]);
 
-// Dummy data for demonstration purposes
-$petData = [
-    ['name' => 'Buddy', 'type' => 'dog'],
-    ['name' => 'Mittens', 'type' => 'cat'],
-    ['name' => 'Rex', 'type' => 'dog'],
-    ['name' => 'Whiskers', 'type' => 'cat'],
-];
-
-// Filter the data based on the search query
-$results = [];
-if ($searchQuery) {
-    foreach ($petData as $pet) {
-        if (stripos($pet['name'], $searchQuery) !== false) {
-            $results[] = $pet;
-        }
-    }
-}
+// Fetch results
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +24,7 @@ if ($searchQuery) {
 </head>
 <body>
     <div class="container">
-        <h1>Search Results for "<?php echo $searchQuery; ?>"</h1>
+        <h1>Search Results for "<?php echo htmlspecialchars($searchQuery); ?>"</h1>
         
         <?php if (empty($results)): ?>
             <p>No results found.</p>
@@ -52,5 +36,6 @@ if ($searchQuery) {
             </ul>
         <?php endif; ?>
     </div>
+    <?php include './includes/footer.inc'; ?>
 </body>
 </html>
