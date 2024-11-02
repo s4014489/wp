@@ -72,8 +72,8 @@ echo '<p>Username: ' . (isset($pet['username']) ? htmlspecialchars($pet['usernam
 // Edit and Delete buttons
 echo '<div class="button-container">';
 // Use the pet's id for the edit and delete links
-echo '<a href="edit_pet.php?pet_id=' . (isset($pet['id']) ? htmlspecialchars($pet['id']) : '0') . '" class="edit-button">Edit</a>';
-echo '<a href="delete_pet.php?pet_id=' . (isset($pet['id']) ? htmlspecialchars($pet['id']) : '0') . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
+echo '<a href="edit_pet.php?pet_id=' . (isset($pet['petid']) ? htmlspecialchars($pet['petid']) : '0') . '" class="edit-button">Edit</a>';
+echo '<a href="delete_pet.php?pet_id=' . (isset($pet['petid']) ? htmlspecialchars($pet['petid']) : '0') . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
 echo '</div>'; // Close button-container
 echo '</div>'; // Close card
                 }
@@ -93,3 +93,4 @@ echo '</div>'; // Close card
 
 </body>
 </html>
+
