@@ -52,19 +52,15 @@ include './includes/nav.inc';
 
             if ($result->num_rows > 0) {
                 while ($pet = $result->fetch_assoc()) {
-                    // Debugging output to check the structure of $pet
-                    // Uncomment the line below for debugging purposes
-                    // var_dump($pet);
-
                     // Display each pet in a card format
                     echo '<div class="card">';
-                    echo '<h3>' . (isset($pet['name']) ? htmlspecialchars($pet['name']) : 'Unknown Pet') . '</h3>';
+                    echo '<h3>' . (isset($pet['petname']) ? htmlspecialchars($pet['petname']) : 'Unknown Pet') . '</h3>';
                     echo '<p>Type: ' . (isset($pet['type']) ? htmlspecialchars($pet['type']) : 'Unknown Type') . '</p>';
                     echo '<p>Age: ' . (isset($pet['age']) ? htmlspecialchars($pet['age']) . ' years' : 'Unknown Age') . '</p>';
                     
                     // Check if the image URL is valid
                     if (!empty($pet['image_url'])) {
-                        echo '<img src="' . htmlspecialchars($pet['image_url']) . '" alt="' . htmlspecialchars($pet['name']) . '">';
+                        echo '<img src="' . htmlspecialchars($pet['image_url']) . '" alt="' . htmlspecialchars($pet['petname']) . '">';
                     } else {
                         echo '<p>No image available.</p>';
                     }
@@ -76,7 +72,7 @@ include './includes/nav.inc';
                     // Edit and Delete buttons
                     echo '<div class="button-container">';
                     echo '<a href="edit_pet.php?pet_id=' . (isset($pet['id']) ? htmlspecialchars($pet['id']) : '0') . '" class="edit-button">Edit</a>';
-                    echo '<a href="delete_pet.php?pet_id=' . (isset($pet['id']) ? htmlspecialchars($pet['id']) : '0') . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
+                    echo '<a href="delete_pet.php?pet_id =' . (isset($pet['id']) ? htmlspecialchars($pet['id']) : '0') . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
                     echo '</div>'; // Close button-container
                     echo '</div>'; // Close card
                 }
@@ -84,14 +80,15 @@ include './includes/nav.inc';
                 echo '<p>No pets found for this user. <a href="add_pet.php">Add a new pet</a></p>'; // Display message if no pets are found
             }
         } else {
-            echo '<p>Failed to prepare SQL statement.</p>'; // Display error message if SQL statement fails
+            echo '<p>Failed to prepare SQL statement.</p>';
         }
     } else {
-        echo '<p>You are not logged in. Please <a href="login.php">log in</a> to view your pets.</p>'; // Display message if user_id is not stored in session
+        echo '<p>You are not logged in. Please <a href="login.php">log in</a> to view your pets.</p>';
     }
     ?>
+
     </div>
-    <?php include './includes/footer.inc'; ?> 
+    <?php include './includes/footer.inc';  ?>
 
 </body>
 </html>
