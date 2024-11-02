@@ -7,9 +7,12 @@
 
 // Check if the search parameter is set
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+$petType = isset($_GET['pet-type']) ? $_GET['pet-type'] : '';
 
 // Sanitize the search query to prevent XSS attacks
 $searchQuery = htmlspecialchars($searchQuery);
+$petType = htmlspecialchars($petType);
+
 
 // Initialize an empty results array
 $results = [];
@@ -25,7 +28,10 @@ if ($result) {
     // Filter the data based on the search query
     if ($searchQuery) {
         foreach ($petData as $pet) {
-            if (stripos($pet['petname'], $searchQuery) !== false) {
+            $matchesSearch = stripos($pet['petname'], $searchQuery) !== false;
+            $matchesType = ($petType === '' || $pet['type'] === $petType);
+            
+            if ($matchesSearch && $matchesType) {
                 $results[] = $pet;
             }
         }

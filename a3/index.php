@@ -78,14 +78,17 @@
     <div class="row">
         <div class="col">
             <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
-                    <select class="form-control mr-sm-2" name="pet_type" aria-label="Select Pet Type">
-                        <option value="">Select Pet Type</option>
-                        <option value="dog">Dog</option>
-                        <option value="cat">Cat</option>
-                    </select>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
-                </form>
+            <form method="GET" action="search.php">
+            <input type="text" name="search" placeholder="Search for pets..." required>
+            <label for="pet-type">Select Pet Type:</label>
+            <select name="pet-type" id="pet-type">
+                <option value="">--All Types--</option>
+                <option value="cat">Cat</option>
+                <option value="dog">Dog</option>
+                <!-- Add more options as needed -->
+            </select>
+            <input type="submit" value="Search">
+        </form>
             </li>
         </div>
         <div class="col">        
