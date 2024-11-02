@@ -64,9 +64,6 @@ if ($result) {
     </div>
 <?php endif; ?>
 
-            </ul>
-        <?php endif; ?>
-    </div>
     <?php include './includes/footer.inc'; ?>
 </body>
 </html>
