@@ -1,10 +1,7 @@
-
-<?php include './includes/header.inc'; ?>
-<?php include './includes/nav.inc'; ?>
-<?php include './includes/db_connect.inc'; ?>
-
-
 <?php
+include './includes/header.inc';
+include './includes/nav.inc';
+include './includes/db_connect.inc';
 
 // Check if the pet ID is provided
 if (!isset($_GET['petid'])) {
@@ -31,9 +28,10 @@ $pet = $result->fetch_assoc();
 
 // Handle deletion if confirmed
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Delete the associated image file if it exists
     $image_path = 'images/' . $pet['image'];
     if (file_exists($image_path)) {
-        unlink($image_path); // Delete the image file if it exists
+        unlink($image_path); // Delete the image file
     }
 
     // Prepare the delete statement
@@ -60,3 +58,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $delete_stmt->close(); // Close the statement
 }
+
+$stmt->close(); // Close the initial statement
+?>
+
+<!-- HTML form to confirm deletion -->
+<form method="POST">
+    <p>Are you sure you want to delete the pet: <?php echo htmlspecialchars($pet['petname']); ?>?</p>
+    <input type="submit" value="Delete">
+    <a href="pets.php">Cancel</a>
+</form>
