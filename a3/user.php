@@ -91,6 +91,7 @@ include './includes/nav.inc';
     ?>
 
     </div>
+    </div> 
     <?php include './includes/footer.inc';  ?>
 
 </body>
