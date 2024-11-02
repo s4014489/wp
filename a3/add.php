@@ -52,17 +52,24 @@
     <form method="POST" action="add_process.php" enctype="multipart/form-data">
     <p> Enter the pet's name:</p>
     <input type="text" name="petname" placeholder="Pet Name" required>
+    <br>
     <p> Enter the pet's description </p> 
     <textarea name="description" placeholder="Description" required></textarea>
-    <p>  Enter the pet's age:</p>
+    <br>
+    <p>  Enter the image caption:</p>
     <input type="text" name="imagecaption" placeholder="Image Caption" required>
+    <br>
     <p>  Enter the pet's age:</p>
     <input type="text" name="age" placeholder="Age" required>
+    <br>
     <p>  Enter the pet's type:</p>
     <input type="text" name="type" placeholder="Type" required>
+    <br>
     <p>  Enter the pet's location:</p>
     <input type="text" name="location" placeholder="Location" required>
+    <br>
     <p>  Enter the pet's image:</p>
+    <br>
     <input type="file" name="image" required>
         <input type="submit" value="Add Pet"> 
         <button type="reset">Clear Form</button>
