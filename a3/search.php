@@ -47,23 +47,22 @@ if ($result) {
     <div class="container">
         <h1>Search Results for "<?php echo $searchQuery; ?>"</h1>
         
-        <?php if (empty($results)): ?>
-            <p>No results found.</p>
-        <?php else: ?>
-            <ul>
-                <?php foreach ($results as $pet): ?>
-                    <div class="card-container">
-    <?php foreach ($results as $pet): ?>
-        <div class="card">
-            <a href="pet_detail.php?petid=<?php echo urlencode($pet['petid']); ?>" class="card-link">
-                <div class="card-content">
-                    <h3><?php echo htmlspecialchars($pet['name']); ?></h3>
-                    <p><?php echo htmlspecialchars($pet['type']); ?></p>
-                </div>
-            </a>
-        </div>
-    <?php endforeach; ?>
-</div>
+ <?php if (empty($results)): ?>
+    <p>No results found.</p>
+<?php else: ?>
+    <div class="card-container">
+        <?php foreach ($results as $pet): ?>
+            <div class="card">
+                <a href="pet_detail.php?petid=<?php echo urlencode($pet['petid']); ?>" class="card-link">
+                    <div class="card-content">
+                        <h3><?php echo htmlspecialchars($pet['name']); ?></h3>
+                        <p><?php echo htmlspecialchars($pet['type']); ?></p>
+                    </div>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
 
             </ul>
         <?php endif; ?>
