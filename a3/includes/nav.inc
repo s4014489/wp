@@ -8,8 +8,9 @@ $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search 
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #008080;">
 <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand" href="index.php">
+    <img class="logo" src="./images/logo.png" width="55px" alt="Logo" /> 
+  </a>    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -39,6 +40,7 @@ $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search 
           </li>
         <?php endif; ?>
       </ul>
+    
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
