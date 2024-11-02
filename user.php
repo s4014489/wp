@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Pets Victoria</title>
+    <title>User - Pets Victoria</title>
     <meta name="author" content="Max Thum">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
@@ -24,49 +24,79 @@
 <body>
 <?php include './includes/header.inc'; ?>
 <?php include './includes/db_connect.inc'; ?>
+<?php include('includes/nav.inc'); ?>
 
 
-        <div>
-            <h2 class="htext">Pets Victoria has a lot to offer! </h2>
-            <p class="p"> For almost two decades, Pets Victoria has helped in creating true social change into the mainstream. Our work has helped make a difference to the Victorian Rescue Community and thousand of pets in need of rescue and rehabiliation. But until every pet is safe, respected and loved, we still have work to do. </p> 
+
+        <div class="container">
+            <h2 class="htext">User</h2>
 
 </div> 
 
+<br>
+<br>
 <div class="container"> 
 <?php
-// Assuming you have already established the database connection in your script
-$query = "SELECT * FROM pets";
-$result = mysqli_query($conn, $query);
 
-// Check if the query was successful
-if (!$result) {
-    die("Query failed: " . mysqli_error($conn));
+// Start the session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); 
 }
 
-if (mysqli_num_rows($result) > 0) {
-    echo '<div class="row">'; // Start a new row for Bootstrap grid
-    while ($row = mysqli_fetch_assoc($result)) {
-        ?>
-        <div class="col-md-4"> <!-- Adjust column size as needed -->
-            <div class="card" style="width: 18rem; margin: 10px;">
-                <img src="<?php echo 'images/' . htmlspecialchars($row["image"]); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row["petname"]); ?>">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo htmlspecialchars($row["petname"]); ?></h5>
-                    <a href="details.php?petid=<?php echo $row['petid']; ?>" class="btn btn-primary">View Details</a>
-                    <?php if (isset($_SESSION['username'])) { // Check if user is logged in ?>
-                        <a href="edit_pet.php?petid=<?php echo $row['petid']; ?>" class="btn btn-secondary">Edit</a>
-                        <a href="delete_pet.php?petid=<?php echo $row['petid']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this pet?');">Delete</a>
-                    <?php } ?>
-                </div>
-            </div>
-        </div>
-        <?php
+// Check if user_id is stored in session
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+
+    // Fetch user data and pets for the specific user_id
+    $sql = "SELECT users.user_id, users.username, pets.* FROM pets 
+            JOIN users ON pets.user_id = users.user_id 
+            WHERE users.user_id = ?";
+    $stmt = $conn->prepare($sql);
+    
+    if ($stmt) {
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            while ($pet = $result->fetch_assoc()) {
+                // Display each pet in a card format
+                echo '<div class="card">';
+                echo '<h3>' . htmlspecialchars($pet['name']) . '</h3>';
+                echo '<p>Type: ' . htmlspecialchars($pet['type']) . '</p>';
+                echo '<p>Age: ' . htmlspecialchars($pet['age']) . ' years</p>';
+                
+                // Check if the image URL is valid
+                if (!empty($pet['image_url'])) {
+                    echo '<img src="' . htmlspecialchars($pet['image_url']) . '" alt="' . htmlspecialchars($pet['name']) . '">';
+                } else {
+                    echo '<p>No image available.</p>';
+                }
+                
+                // Display user_id and username
+                echo '<p>User ID: ' . htmlspecialchars($pet['user_id']) . '</p>'; // Display user_id
+                echo '<p>Username: ' . htmlspecialchars($pet['username']) . '</p>'; // Display username
+
+                // Edit and Delete buttons
+                echo '<div class="button-container">';
+                echo '<a href="edit_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="edit-button">Edit</a>';
+                echo '<a href="delete_pet.php?pet_id=' . htmlspecialchars($pet['id']) . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
+                echo '</div>'; // Close button-container
+                echo '</div>'; // Close card
+            }
+        } else {
+            echo '<p>No pets found for this user. <a href="add_pet.php">Add a new pet</a></p>'; // Link to add a new pet
+        }
+
+        $stmt->close();
+    } else {
+        echo '<p>Error: Could not prepare statement.</p>';
     }
-    echo '</div>'; // Close the last row
 } else {
-    echo '<p>No pets found.</p>'; // Message when no pets are available
+    echo '<p>Error: User is not logged in.</p>'; // Handle case where user is not logged in
 }
-?> 
+?>
+
 </div> 
 
 <?php include './includes/footer.inc'; ?>
@@ -76,3 +106,5 @@ if (mysqli_num_rows($result) > 0) {
 </body>
 </body>
 </html>
+
+ 

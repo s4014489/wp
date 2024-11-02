@@ -15,6 +15,7 @@ if ($conn->connect_error) {
 
 $searchQuery = '';
 $results = [];
+$pet_type = isset($_GET['pet_type']) ? $_GET['pet_type'] : '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $searchQuery = $_POST['search'];
@@ -25,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ss", $searchTerm, $searchTerm);
     $stmt->execute();
     $result = $stmt->get_result();
+    
 
     // Fetch results
     while ($row = $result->fetch_assoc()) {

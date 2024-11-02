@@ -1,5 +1,6 @@
 <?php include('includes/db_connect.inc'); ?>
 <?php include('includes/header.inc'); ?>
+<?php include('includes/nav.inc'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +44,8 @@ if (isset($_GET['petid'])) {
   }
 }
 ?>
-
+<br>
+<br>
 <div class="container">
   <div class="row align-items-start">
     <div class="col">

@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Pets Victoria</title>
+    <title>Register - Pets Victoria</title>
     <meta name="author" content="Max Thum">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
@@ -24,12 +24,16 @@
 <body>
 <?php include './includes/header.inc'; ?>
 <?php include './includes/db_connect.inc'; ?>
+<?php include('includes/nav.inc'); ?>
+
 
 
 </div> 
 
 <body> 
-    <div class="hero">
+<br> 
+<br>
+    <div class="container">
         <br> 
         <div class="row">
     <div class="col">col</div>
