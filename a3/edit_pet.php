@@ -1,7 +1,7 @@
 <?php
 include './includes/db_connect.inc'; // Database connection
 include './includes/header.inc';
-include('includes/nav.inc');
+include('./includes/nav.inc');
 
 
 // Function to fetch pet details
