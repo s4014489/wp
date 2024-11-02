@@ -19,7 +19,7 @@
 </head>
 
 <?php include './includes/header.inc'; ?>
-<?php include('./includes/nav.inc'); ?>
+<?php include './includes/nav.inc'; ?>
 
 <body padding ="30">
 
