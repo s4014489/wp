@@ -1,8 +1,11 @@
 <!-- Navbar -->
 <?php
 
-session_start(); // Start the session
-$isLoggedIn = isset($_SESSION['username']); 
+// Check if the session is already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); 
+
+}$isLoggedIn = isset($_SESSION['username']); 
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get the search query from the URL
 ?>
 
