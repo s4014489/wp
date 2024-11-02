@@ -38,20 +38,20 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include './includes/db_connect.inc'; // Include your database connection file
 
+    // Escape user inputs for security
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = $_POST['password'];
 
     // Prepare the SQL statement to prevent SQL injection
-    $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
+    $stmt = $conn->prepare("SELECT user_id, password FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
 
     // Check if the user exists
     if ($stmt->num_rows == 1) {
-        $stmt->bind_result($hashed_password);
+        $stmt->bind_result($user_id, $hashed_password);
         $stmt->fetch();
-
         // Verify the password against the hashed password
         if (password_verify($password, $hashed_password)) {
             $_SESSION['username'] = $username; // Set session variable
