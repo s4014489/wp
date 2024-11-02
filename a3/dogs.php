@@ -20,7 +20,10 @@
 
 
 <body padding ="30">
-    <?php include './includes/header.inc';
+
+<?php include './includes/header.inc'; ?>
+<?php include './includes/nav.inc'; ?>
+<?php include './includes/db_connect.inc'; ?>
      $sql = "SELECT * FROM pet WHERE type = 'Dogs'";
      $result = $conn->query($sql);
      ?> 

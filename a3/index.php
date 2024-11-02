@@ -18,8 +18,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
+
 <?php include './includes/header.inc'; ?>
 <?php include './includes/nav.inc'; ?>
+<?php include './includes/db_connect.inc'; ?>
+
 
 <body padding ="30">
 
