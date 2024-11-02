@@ -6,11 +6,6 @@
 
 
 <?php
-// search.php
-
-// Start the session if needed
-session_start();
-
 // Check if the search parameter is set
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
