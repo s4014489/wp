@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Start the session
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); 
@@ -11,7 +11,7 @@ include './includes/nav.inc';
 ?>
 
 <!DOCTYPE html>
-< lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,14 +26,47 @@ include './includes/nav.inc';
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
 </head>
 
-<>
+<body>
+    <div class="container">
+        <h2 class="htext">User  </h2>
+    </div> 
+
+    <br>
+    <br>
+    <div class="container"> 
+    <?php
+// Start the session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); 
+}
+
+// Include necessary files
+include './includes/db_connect.inc'; 
+include './includes/header.inc'; 
+include './includes/nav.inc'; 
+?>
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User - Pets Victoria</title>
+    <meta name="author" content="Max Thum">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+</head>
+
     <div class="container">
         <h2 class="htext">User </h2>
     </div> 
 
     <br>
     <br>
-    < class="container"> 
     <?php
     // Check if user_id is stored in session
     if (isset($_SESSION['user_id'])) {
@@ -53,7 +86,7 @@ include './includes/nav.inc';
             if ($result->num_rows > 0) {
                 while ($pet = $result->fetch_assoc()) {
                     // Validate petid before using it
-                    $petid = isset($pet['petid']) && is_numeric($pet['petid']) ? htmlspecialchars($pet['petid']) : '0';
+                    $pet_id = isset($pet['petid']) && is_numeric($pet['petid']) ? htmlspecialchars($pet['petid']) : '0';
 
                     // Display each pet in a card format
                     echo '<div class="card">';
@@ -74,8 +107,8 @@ include './includes/nav.inc';
 
                     // Edit and Delete buttons
                     echo '<div class="button-container">';
-                    echo '<a href="edit_pet.php?petid=' . $petid . '" class="edit-button">Edit</a>';
-                    echo '<a href="delete_pet.php?petid=' . $petid . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
+                    echo '<a href="edit_pet.php?pet_id=' . $pet_id . '" class="edit-button">Edit</a>';
+                    echo '<a href="delete_pet.php?pet_id=' . $pet_id . '" class="delete-button" onclick="return confirm(\'Are you sure you want to delete this pet?\');">Delete</a>';
                     echo '</div>'; // Close button-container
                     echo '</div>'; // Close card
                 }
@@ -89,10 +122,13 @@ include './includes/nav.inc';
         echo '<p>You are not logged in.</p>';
     }
     ?>
+    <br>
+    <br>
+    <br>
 
     </div>
-    </div> 
     <?php include './includes/footer.inc';  ?>
 
 </body>
 </html>
+
